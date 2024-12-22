@@ -36,6 +36,22 @@ const Navbar = () => {
           Add Tutorials
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/my_tutorials"
+          className="hover:text-primary font-semibold"
+        >
+          My Tutorials
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my_booked_tutors"
+          className="hover:text-primary font-semibold"
+        >
+          My booked tutors
+        </NavLink>
+      </li>
     </>
   );
 
@@ -124,7 +140,7 @@ const Navbar = () => {
 
           <div className="relative">
             {user && user.email ? (
-              <img
+              <img referrerPolicy='no-referrer'
                 className="w-10 h-10 rounded-full border-2 border-gray-600 cursor-pointer"
                 src={user?.photoURL}
                 alt="User Avatar"

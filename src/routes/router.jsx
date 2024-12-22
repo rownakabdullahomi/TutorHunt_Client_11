@@ -3,6 +3,10 @@ import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
+import PrivateRoute from "./PrivateRoute";
+import MyTutorials from "../pages/MyTutorials";
+import AddTutorials from "../pages/AddTutorials";
+import MyBookedTutors from "../pages/MyBookedTutors";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,30 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/my_tutorials",
+        element: (
+          <PrivateRoute>
+            <MyTutorials></MyTutorials>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add_tutorials",
+        element: (
+          <PrivateRoute>
+            <AddTutorials></AddTutorials>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my_booked_tutors",
+        element: (
+          <PrivateRoute>
+            <MyBookedTutors></MyBookedTutors>
+          </PrivateRoute>
+        ),
       },
     ],
   },
