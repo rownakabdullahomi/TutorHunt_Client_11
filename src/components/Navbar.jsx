@@ -129,21 +129,26 @@ const Navbar = () => {
                 src={user?.photoURL}
                 alt="User Avatar"
                 onClick={toggleProfileDropdown}
+                title={user.displayName || "User"}
               />
             ) : (
-              <div onClick={toggleProfileDropdown} className="cursor-pointer">
+              <div
+                onClick={toggleProfileDropdown}
+                className="cursor-pointer"
+                title="Please log in"
+              >
                 <FaCircleUser className="text-4xl" />
               </div>
             )}
 
             {profileDropdownOpen && (
-              <div className="absolute -right-20 mt-2 bg-base-100 shadow-lg rounded-box w-52 border-2 border-base-300 z-20">
+              <div className="absolute right-0 mt-2 bg-base-100 shadow-lg rounded-box w-52 border-2 border-base-300 z-20">
                 {user && user.email ? (
-                  <p className="font-semibold text-center p-2">
+                  <p className="font-semibold text-center py-2">
                     {user.displayName}
                   </p>
                 ) : (
-                  <p className="font-semibold text-center p-2 ">
+                  <p className="font-semibold text-center py-2">
                     Please log in
                   </p>
                 )}
