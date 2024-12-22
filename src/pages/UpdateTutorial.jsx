@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
-const AddTutorials = () => {
-  const { user } = useContext(AuthContext);
+const UpdateTutorial = () => {
+  const { id } = useParams();
+  const [tutorial, setTutorial] = useState(null);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
@@ -23,60 +23,69 @@ const AddTutorials = () => {
     };
 
     fetchCategories();
-  }, []); // Runs only once when the component mounts
+  }, []);
 
-//   console.log(categories);
+  // Fetch the tutorial details
+  useEffect(() => {
+    const fetchTutorial = async () => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/tutorial/${id}`
+        );
+        console.log(data);
+        setTutorial(data);
+      } catch (error) {
+        console.error("Error fetching tutorial:", error.message);
+        toast.error("Failed to fetch tutorial details.");
+      }
+    };
+
+    fetchTutorial();
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.target;
-
-    // Create FormData object
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    data.review = 0; // Default review value
-
-    console.log("Submitted Data:", data);
+    const formData = new FormData(e.target);
+    const updatedData = Object.fromEntries(formData.entries());
 
     try {
-      // 1. Make a POST request
-      await axios.post(`${import.meta.env.VITE_API_URL}/add_tutorials`, data);
-
-      // 2. Reset the form
-      form.reset();
-
-      // 3. Show toast and navigate
-      toast.success("Data Added Successfully!!!");
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/update_tutorial/${id}`,
+        updatedData
+      );
+      toast.success("Tutorial updated successfully!");
       navigate("/my_tutorials");
     } catch (error) {
-      //   console.log(error);
-      toast.error(error.message);
+      console.error("Error updating tutorial:", error.message);
+      toast.error("Failed to update tutorial.");
     }
   };
 
+  if (!tutorial) {
+    return <div>Loading...</div>; // Loading state
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg rounded-lg my-10">
-      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6 lg:mb-12">
-        Add a New Tutorial
+      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
+        Update Tutorial
       </h2>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        {/* User Name */}
+        {/* Name (Non-editable) */}
         <div>
           <label className="block font-medium mb-2 text-indigo-700">Name</label>
           <input
             type="text"
             name="name"
-            value={user?.displayName || ""}
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
-            placeholder="Enter your name"
-            required
+            defaultValue={tutorial.name}
+            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
             readOnly
           />
         </div>
-        {/* User Email */}
+        {/* Email (Non-editable) */}
         <div>
           <label className="block font-medium mb-2 text-indigo-700">
             Email
@@ -84,10 +93,8 @@ const AddTutorials = () => {
           <input
             type="email"
             name="email"
-            value={user?.email || ""}
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
-            placeholder="Enter your email"
-            required
+            defaultValue={tutorial.email}
+            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
             readOnly
           />
         </div>
@@ -99,12 +106,11 @@ const AddTutorials = () => {
           <input
             type="text"
             name="image"
+            defaultValue={tutorial.image}
             className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
-            placeholder="Enter tutorial image URL"
             required
           />
         </div>
-
         {/* Language */}
         <div>
           <label className="block font-medium mb-2 text-indigo-700">
@@ -112,16 +118,17 @@ const AddTutorials = () => {
           </label>
           <select
             name="language"
+            defaultValue={tutorial.language}
             className="select select-bordered w-full border-indigo-300 focus:border-indigo-500"
             required
           >
-            <option value="">Select a language</option>
             {categories.map((category) => (
-              <option key={category._id} value={category.value}>{category.value}</option>
+              <option key={category._id} value={category.value}>
+                {category.value}{" "}
+              </option>
             ))}
           </select>
         </div>
-
         {/* Price */}
         <div>
           <label className="block font-medium mb-2 text-indigo-700">
@@ -130,12 +137,12 @@ const AddTutorials = () => {
           <input
             type="number"
             name="price"
+            defaultValue={tutorial.price}
             className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
-            placeholder="Enter price"
             required
           />
         </div>
-        {/* Review */}
+        {/* Review (Non-editable) */}
         <div>
           <label className="block font-medium mb-2 text-indigo-700">
             Review
@@ -143,9 +150,8 @@ const AddTutorials = () => {
           <input
             type="number"
             name="review"
-            value="0"
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
-            placeholder="0"
+            defaultValue={tutorial.review}
+            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-gray-100"
             readOnly
           />
         </div>
@@ -156,18 +162,19 @@ const AddTutorials = () => {
           </label>
           <textarea
             name="description"
+            defaultValue={tutorial.description}
             className="textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"
-            placeholder="Enter description"
             required
           ></textarea>
         </div>
+
         {/* Submit Button */}
         <div className="md:col-span-2">
           <button
             type="submit"
             className="btn btn-primary btn-outline w-full btn-neutral"
           >
-            Submit Tutorial
+            Update Tutorial
           </button>
         </div>
       </form>
@@ -175,9 +182,4 @@ const AddTutorials = () => {
   );
 };
 
-export default AddTutorials;
-
-
-
-
-
+export default UpdateTutorial;

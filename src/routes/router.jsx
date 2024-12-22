@@ -7,6 +7,8 @@ import PrivateRoute from "./PrivateRoute";
 import MyTutorials from "../pages/MyTutorials";
 import AddTutorials from "../pages/AddTutorials";
 import MyBookedTutors from "../pages/MyBookedTutors";
+import UpdateTutorials from "../pages/UpdateTutorial";
+import UpdateTutorial from "../pages/UpdateTutorial";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddTutorials></AddTutorials>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update_tutorials/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateTutorial></UpdateTutorial>
           </PrivateRoute>
         ),
       },
