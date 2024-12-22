@@ -34,7 +34,7 @@ const MyTutorials = () => {
             <img
               src={tutorial.image}
               alt={tutorial.name}
-              className="w-full h-48 object-contain p-4"
+              className="w-full h-48 object-contain m-4"
             />
             <div className="p-4">
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{tutorial.name}</h3>
@@ -45,7 +45,7 @@ const MyTutorials = () => {
                 <strong>Price:</strong> ${tutorial.price}
               </p>
               <p className="text-sm text-gray-500 mb-1">
-                <strong>Review:</strong> {tutorial.review} ⭐
+                <strong>Review:</strong> {tutorial.review}
               </p>
               <p className="text-sm text-gray-700 mb-3">{tutorial.description}</p>
               <div className="flex justify-between items-center">
