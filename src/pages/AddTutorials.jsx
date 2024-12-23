@@ -143,7 +143,7 @@ const AddTutorials = () => {
           <input
             type="number"
             name="review"
-            value="0"
+
             className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
             placeholder="0"
             readOnly

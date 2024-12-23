@@ -7,7 +7,6 @@ import PrivateRoute from "./PrivateRoute";
 import MyTutorials from "../pages/MyTutorials";
 import AddTutorials from "../pages/AddTutorials";
 import MyBookedTutors from "../pages/MyBookedTutors";
-import UpdateTutorials from "../pages/UpdateTutorial";
 import UpdateTutorial from "../pages/UpdateTutorial";
 import FindTutors from "../pages/FindTutors";
 import TutorDetails from "../pages/TutorDetails";
