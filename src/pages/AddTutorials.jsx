@@ -97,7 +97,7 @@ const AddTutorials = () => {
             Image URL
           </label>
           <input
-            type="text"
+            type="url"
             name="image"
             className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
             placeholder="Enter tutorial image URL"

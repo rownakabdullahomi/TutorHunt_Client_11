@@ -59,43 +59,43 @@ const MyTutorials = () => {
         {tutorials.map((tutorial) => (
           <div
             key={tutorial._id}
-            className="card bg-white shadow-md rounded-lg overflow-hidden"
+            className="card bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full"
           >
             <img
-              src={tutorial.image}
-              alt={tutorial.name}
+              src={tutorial?.image}
+              alt={tutorial?.name}
               className="w-full h-48 object-contain m-4"
             />
-            <div className="p-4">
+            <div className="p-4 flex-grow">
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                {tutorial.name}
+                {tutorial?.name}
               </h3>
               <p className="text-sm text-gray-500 mb-1">
-                <strong>Language:</strong> {tutorial.language}
+                <strong>Language:</strong> {tutorial?.language}
               </p>
               <p className="text-sm text-gray-500 mb-1">
-                <strong>Price:</strong> ${tutorial.price}
+                <strong>Price:</strong> ${tutorial?.price}
               </p>
               <p className="text-sm text-gray-500 mb-1">
-                <strong>Review:</strong> {tutorial.review}
+                <strong>Review:</strong> {tutorial?.review}
               </p>
-              <p className="text-sm text-gray-700 mb-3">
-                {tutorial.description}
+              <p className="text-sm text-gray-700 mb-3 flex-grow">
+                {tutorial?.description.split(" ").slice(0, 50).join(" ")}
               </p>
-              <div className="flex justify-between items-center">
-                <Link
-                  to={`/update_tutorials/${tutorial._id}`}
-                  className="btn btn-outline btn-sm text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white"
-                >
-                  Update
-                </Link>
-                <button
-                  onClick={() => handleDelete(tutorial._id)}
-                  className="btn btn-outline btn-sm text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
-                >
-                  Delete
-                </button>
-              </div>
+            </div>
+            <div className="p-4 flex justify-between items-center mt-auto">
+              <Link
+                to={`/update_tutorials/${tutorial._id}`}
+                className="btn btn-outline btn-sm text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white"
+              >
+                Update
+              </Link>
+              <button
+                onClick={() => handleDelete(tutorial?._id)}
+                className="btn btn-outline btn-sm text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
