@@ -55,7 +55,7 @@ const Categories = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {categories.map((category) => (
           <Link
-            to={`/find-tutors`}
+            to={"/find_tutors"}
             key={category._id}
             className="cursor-pointer bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg transition-transform transform hover:scale-105"
           >

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -43,6 +43,12 @@ const Register = () => {
         updateUserProfile({ displayName: name, photoURL: photo });
         toast.success("Registration Successful!");
         navigate("/");
+
+        // Save new user to DB
+        const createdAt = res.user.metadata.creationTime;
+        const newUser = { name, email, photo, createdAt };
+        // Make a POST request
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
       })
       .catch((error) => {
         toast.error("Registration Failed! " + error.message);
@@ -56,6 +62,17 @@ const Register = () => {
         setUser(user);
         toast.success("Google login successful!");
         navigate("/");
+
+        // Save Google user to DB
+        const createdAt = user?.metadata.creationTime;
+        const newUser = {
+          name: user?.displayName,
+          email: user?.email,
+          photo: user?.photoURL,
+          createdAt,
+        };
+        // Make a POST request to store the user
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
       })
       .catch((error) => {
         // console.log(error.message);

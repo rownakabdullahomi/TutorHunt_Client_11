@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 
 const Login = () => {
@@ -39,6 +40,17 @@ const Login = () => {
         setUser(user);
         toast.success("Google login successful!");
         navigate(location?.state ? location.state : "/");
+
+        // Save Google user to DB
+        const createdAt = user?.metadata.creationTime;
+        const newUser = {
+          name: user?.displayName,
+          email: user?.email,
+          photo: user?.photoURL,
+          createdAt,
+        };
+        // Make a POST request to store the user
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
       })
       .catch((error) => {
         // console.log(error.message);
