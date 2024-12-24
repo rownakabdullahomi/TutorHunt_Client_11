@@ -33,30 +33,31 @@ const Login = () => {
       });
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((res) => {
-        const user = res.user;
-        setUser(user);
-        toast.success("Google login successful!");
-        navigate(location?.state ? location.state : "/");
-
-        // Save Google user to DB
-        const createdAt = user?.metadata.creationTime;
-        const newUser = {
-          name: user?.displayName,
-          email: user?.email,
-          photo: user?.photoURL,
-          createdAt,
-        };
-        // Make a POST request to store the user
-        axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
-      })
-      .catch((error) => {
-        // console.log(error.message);
-        toast.error("Google login failed! " + error.message);
-      });
+  const handleGoogleLogin = async () => {
+    try {
+      const res = await googleLogin();
+      const user = res?.user;
+      setUser(user);
+  
+      toast.success("Google login successful!");
+      navigate(location?.state ? location.state : "/");
+  
+      // Save Google user to DB
+      const createdAt = user?.metadata.creationTime;
+      const newUser = {
+        name: user?.displayName,
+        email: user?.email,
+        photo: user?.photoURL,
+        createdAt,
+      };
+  
+      // Make a POST request to store the user
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
+    } catch (error) {
+      toast.error("Google login failed! " + error.message);
+    }
   };
+  
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
