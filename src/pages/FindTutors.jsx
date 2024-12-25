@@ -7,13 +7,15 @@ import NoData from "../components/NoData";
 
 const FindTutors = () => {
   const [searchText, setSearchText] = useState(""); // For search input
+  const [page, setPage] = useState(1); // Current page
+  const [pageSize, setPageSize] = useState(6); // Page size
 
   // Fetch tutors using TanStack Query
   const { data: tutors, isLoading, isError, error } = useQuery({
     queryKey: ["tutors"],
     queryFn: async () => {
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/tutors`);
-      return data; 
+      return data;
     },
   });
 
@@ -22,13 +24,34 @@ const FindTutors = () => {
     tutor.language.toLowerCase().includes(searchText.toLowerCase())
   );
 
+  // Paginate the filtered tutors
+  const startIndex = (page - 1) * pageSize;
+  const paginatedTutors = filteredTutors?.slice(startIndex, startIndex + pageSize);
+
   const handleSearch = (e) => {
     setSearchText(e.target.value);
+    setPage(1); // Reset to first page on search
   };
 
   const handleReset = () => {
     setSearchText("");
+    setPage(1); // Reset to first page on reset
   };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
+
+  const handlePageSizeChange = (e) => {
+    setPageSize(parseInt(e.target.value));
+    setPage(1); // Reset to first page on page size change
+  };
+
+  // Calculate total pages
+  const totalPages = Math.ceil((filteredTutors?.length || 0) / pageSize);
+
+  // Create page numbers array
+  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   // Render loading state
   if (isLoading) {
@@ -70,7 +93,7 @@ const FindTutors = () => {
 
       {/* Tutor Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {filteredTutors?.map((tutor) => (
+        {paginatedTutors?.map((tutor) => (
           <div
             key={tutor._id}
             className="flex flex-col lg:flex-row bg-base-300 shadow-lg rounded-lg overflow-hidden"
@@ -121,6 +144,47 @@ const FindTutors = () => {
 
       {/* Show message if no tutors match */}
       {filteredTutors?.length === 0 && <NoData />}
+
+      {/* Pagination Controls */}
+      <div className="mt-6 flex items-center justify-center space-x-2">
+        <button
+          onClick={() => handlePageChange(page - 1)}
+          disabled={page === 1}
+          className="btn btn-outline btn-sm"
+        >
+          Previous
+        </button>
+        {pageNumbers.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            onClick={() => handlePageChange(pageNumber)}
+            className={`btn btn-sm ${
+              pageNumber === page ? "btn-neutral" : "btn-outline"
+            }`}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(page + 1)}
+          disabled={page === totalPages}
+          className="btn btn-outline btn-sm"
+        >
+          Next
+        </button>
+
+        {/* Page Size Dropdown */}
+        <select
+          value={pageSize}
+          onChange={handlePageSizeChange}
+          className="select select-bordered ml-4 min-h-9 h-9"
+        >
+          <option value={6}>6</option>
+          <option value={8}>8</option>
+          <option value={9}>9</option>
+          <option value={10}>10</option>
+        </select>
+      </div>
     </div>
   );
 };
