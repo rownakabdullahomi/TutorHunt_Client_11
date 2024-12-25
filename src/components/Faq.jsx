@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import { Slide } from "react-awesome-reveal"; 
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -21,27 +22,32 @@ const Faq = () => {
   return (
     <section className="py-12 bg-base-200">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
-        <div className="divide-y divide-gray-300">
-          {faqs.map((faq, index) => (
-            <div key={index} className="py-4">
-              <button
-                className="w-full flex justify-between items-center text-left text-lg font-medium text-gray-800 focus:outline-none"
-                onClick={() => toggleFaq(index)}
-              >
-                <span>{faq.question}</span>
-                <span className="ml-4 text-primary">
-                  {index === activeIndex ? <FiMinus /> : <FiPlus />}
-                </span>
-              </button>
-              {index === activeIndex && (
-                <div className="mt-3 text-gray-600">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+
+          <h2 className="text-3xl font-bold mb-8 animate__animated animate__flash animate__infinite animate__slower">Frequently Asked Questions</h2>
+
+        {/* Slide animation for the FAQ section */}
+        <Slide bottom duration={1000} delay={200}>
+          <div className="divide-y divide-gray-300">
+            {faqs.map((faq, index) => (
+              <div key={index} className="py-4">
+                <button
+                  className="w-full flex justify-between items-center text-left text-lg font-medium focus:outline-none"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className="ml-4 text-primary">
+                    {index === activeIndex ? <FiMinus /> : <FiPlus />}
+                  </span>
+                </button>
+                {index === activeIndex && (
+                  <div className="mt-3 text-gray-500">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </Slide>
       </div>
     </section>
   );

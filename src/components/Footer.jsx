@@ -7,21 +7,19 @@ const Footer = () => {
         {/* Services Section */}
         <nav>
           <h6 className="footer-title">Services</h6>
-          <Link to="/services/career-counseling" className="link link-hover">
-            Career Counseling
+          <Link to="/services/counseling" className="link link-hover">
+            Counseling
           </Link>
           <Link to="/services/job-support" className="link link-hover">
             Job Support
           </Link>
-          <Link to="/services/mock-interviews" className="link link-hover">
-            Mock Interviews
+          <Link to="/services/pricing" className="link link-hover">
+            Pricing
           </Link>
-          <Link to="/services/resume-optimization" className="link link-hover">
-            Resume Optimization
+          <Link to="/services/skills" className="link link-hover">
+            Skills
           </Link>
-          <Link to="/services/linkedin-enhancement" className="link link-hover">
-            LinkedIn Profile Enhancement
-          </Link>
+
         </nav>
 
         {/* Company Section */}
@@ -44,10 +42,10 @@ const Footer = () => {
         {/* Resources Section */}
         <nav>
           <h6 className="footer-title">Resources</h6>
-          <Link to="/faq" className="link link-hover">
-            FAQs
+          <Link to="/programs" className="link link-hover">
+            Programs
           </Link>
-          <Link to="/blog" className="link link-hover">
+          <Link to="/blogs" className="link link-hover">
             Blog
           </Link>
           <Link to="/privacy-policy" className="link link-hover">
@@ -115,7 +113,7 @@ const Footer = () => {
         <aside>
           <div className="font-semibold text-center">
             Copyright © {new Date().getFullYear()} - All rights reserved by{" "}
-            <span className="text-primary">TutorHunt</span>.
+            Tutor<span className="text-primary">Hunt</span>.
             <br />
             <p className="text-secondary mt-2">Powered by Rownak</p>
           </div>

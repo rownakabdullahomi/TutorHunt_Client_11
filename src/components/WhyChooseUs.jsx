@@ -1,6 +1,7 @@
 import { FcCurrencyExchange, FcElectronics, FcPaid, FcGlobe, FcGraduationCap, FcReading } from "react-icons/fc";
 import { motion } from "framer-motion";
 
+
 const WhyChooseUs = () => {
   const features = [
     {
@@ -63,8 +64,8 @@ const WhyChooseUs = () => {
   return (
     <section className="py-12 bg-base-200">
       <div className="text-center mb-8">
-        <h2 className="text-lg font-semibold text-gray-500">Achieve your goals</h2>
-        <h3 className="text-3xl font-bold text-gray-800 mt-4">Focus on the skills you need</h3>
+        <h2 className="text-lg font-semibold text-gray-600">Achieve your goals</h2>
+        <h3 className="text-3xl font-bold mt-4 animate__animated animate__heartBeat animate__infinite animate__slower">Focus on the skills you need</h3>
       </div>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-11/12 mx-auto px-4"
@@ -86,7 +87,7 @@ const WhyChooseUs = () => {
               {feature.icon}
             </motion.div>
             <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
-            <p className="text-gray-600">{feature.description}</p>
+            <p className="text-gray-500">{feature.description}</p>
           </motion.div>
         ))}
       </motion.div>

@@ -2,6 +2,8 @@
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Slide } from "react-awesome-reveal";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,24 +16,32 @@ const Slider = () => {
 
   useEffect(() => {
     const imageUrls = [
-      "https://i.ibb.co.com/6v9bL3d/pexels-august-de-richelieu-4261787.jpg",
-      "https://i.ibb.co.com/3hVjwCv/pexels-julia-m-cameron-4144294.jpg",
-      "https://i.ibb.co.com/Lxf8KB5/pexels-julia-m-cameron-4144531.jpg",
-      "https://i.ibb.co.com/6YsBsgk/pexels-peter-olexa-2214257-4012966.jpg",
-      "https://i.ibb.co.com/44HC34M/pexels-rdne-6517120.jpg",
-      "https://i.ibb.co.com/M68JqrY/pexels-vanessa-garcia-6325978.jpg",
+      "https://i.ibb.co/6v9bL3d/pexels-august-de-richelieu-4261787.jpg",
+      "https://i.ibb.co/3hVjwCv/pexels-julia-m-cameron-4144294.jpg",
+      "https://i.ibb.co/Lxf8KB5/pexels-julia-m-cameron-4144531.jpg",
+      "https://i.ibb.co/6YsBsgk/pexels-peter-olexa-2214257-4012966.jpg",
+      "https://i.ibb.co/44HC34M/pexels-rdne-6517120.jpg",
+      "https://i.ibb.co/M68JqrY/pexels-vanessa-garcia-6325978.jpg",
     ];
 
     setImages(imageUrls);
   }, []);
 
   return (
-    <div className="my-10 w-11/12 mx-auto">
+    <motion.div
+      className="my-10 w-11/12 mx-auto"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {/* Title Section */}
+      <Slide>
+      <h1 className="text-3xl font-bold text-center my-6">
+        Welcome to Tutor<span className="text-primary">Hunt</span>
+      </h1>
+      </Slide>
 
-        <h1 className="text-3xl font-bold text-center my-6">
-          Welcome to TutorHunt
-        </h1>
-
+      {/* Slider Section */}
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation // Enables navigation arrows
@@ -42,15 +52,22 @@ const Slider = () => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <img
-              src={image}
-              alt={`Slide ${index + 1}`}
-              className="w-full md:h-[400px] h-36 rounded-lg shadow-md"
-            />
+            <motion.div
+              className="overflow-hidden rounded-lg shadow-md"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+            >
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="w-full md:h-[400px] h-36 object-cover"
+              />
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 

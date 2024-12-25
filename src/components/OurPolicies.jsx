@@ -1,6 +1,11 @@
-
 import Marquee from "react-fast-marquee";
-import { FaFire, FaCalendarAlt, FaMoneyBillWave, FaUserCheck } from "react-icons/fa";
+import {
+  FaFire,
+  FaCalendarAlt,
+  FaMoneyBillWave,
+  FaUserCheck,
+} from "react-icons/fa";
+import { Slide } from "react-awesome-reveal";
 
 const OurPolicies = () => {
   const policies = [
@@ -32,19 +37,24 @@ const OurPolicies = () => {
 
   return (
     <div className="bg-base-200 py-12">
-      <h2 className="text-4xl font-bold text-center text-primary mb-10">
-        TutorHunt Policies Are Really Simple
-      </h2>
+      <Slide direction="right">
+        <h2 className="text-4xl font-bold text-center mb-10">
+          Tutor<span className="text-primary">Hunt</span> Policies Are Really
+          Simple
+        </h2>
+      </Slide>
       <div className="max-w-7xl mx-auto">
         <Marquee gradient={false} speed={40}>
           {policies.map((policy, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-6 mx-4 w-80"
+              className="flex flex-col items-center justify-center bg-base border-2 border-gray-300 shadow-md rounded-lg p-6 mx-4 w-80"
             >
               {policy.icon}
-              <h3 className="text-xl font-bold text-gray-800 mb-2">{policy.title}</h3>
-              <p className="text-sm text-gray-600">{policy.description}</p>
+              <h3 className="text-xl font-bold mb-2">
+                {policy.title}
+              </h3>
+              <p className="text-sm text-gray-500">{policy.description}</p>
             </div>
           ))}
         </Marquee>

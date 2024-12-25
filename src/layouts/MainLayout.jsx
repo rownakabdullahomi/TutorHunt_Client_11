@@ -5,7 +5,8 @@ import Footer from "../components/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
+      {/* Toast Notifications */}
       <Toaster
         toastOptions={{
           className: "",
@@ -15,14 +16,20 @@ const MainLayout = () => {
           },
         }}
       />
-      <nav>
-        <Navbar></Navbar>
+
+      {/* Navbar */}
+      <nav className="sticky top-0 z-50">
+        <Navbar />
       </nav>
-      <main>
-        <Outlet></Outlet>
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        <Outlet />
       </main>
-      <footer className="bg-base-300 text-base-content ">
-        <Footer></Footer>
+
+      {/* Footer */}
+      <footer className="bg-base-300 text-base-content">
+        <Footer />
       </footer>
     </div>
   );

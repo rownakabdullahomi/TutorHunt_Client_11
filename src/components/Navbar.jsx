@@ -4,6 +4,7 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { AuthContext } from "../providers/AuthProvider";
 import { FaCircleUser } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
@@ -19,19 +20,25 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/" className="hover:text-primary font-semibold">
+        <NavLink
+          to="/"
+          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+        >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/find_tutors" className="hover:text-primary font-semibold">
+        <NavLink
+          to="/find_tutors"
+          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+        >
           Find Tutors
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/add_tutorials"
-          className="hover:text-primary font-semibold"
+          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
         >
           Add Tutorials
         </NavLink>
@@ -39,7 +46,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/my_tutorials"
-          className="hover:text-primary font-semibold"
+          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
         >
           My Tutorials
         </NavLink>
@@ -47,9 +54,9 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/my_booked_tutors"
-          className="hover:text-primary font-semibold"
+          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
         >
-          My booked tutors
+          My Booked Tutors
         </NavLink>
       </li>
     </>
@@ -65,7 +72,7 @@ const Navbar = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
   };
 
-  // Toggle theme
+  // Toggle Theme
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
@@ -81,9 +88,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 shadow-md">
-      <div className="navbar w-11/12 mx-auto">
+    <div className="bg-base-100 shadow-md transition-all duration-300">
+      <motion.div
+        className="navbar w-11/12 mx-auto"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="navbar-start">
+          {/* Mobile Menu Dropdown */}
           <div className="dropdown">
             <button
               tabIndex={0}
@@ -107,16 +120,30 @@ const Navbar = () => {
               </svg>
             </button>
             {dropdownOpen && (
-              <ul className="menu dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10">
-                <li className="font-bold text-xl my-2">
-                  <Link to="/">TutorHunt</Link>
+              <motion.ul
+                className="menu dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <li className="font-bold italic text-2xl my-2 animate__animated animate__headShake animate__infinite animate__slower mx-auto">
+                  <Link to="/">
+                    <div>
+                      Tutor<span className="text-primary">Hunt</span>
+                    </div>
+                  </Link>
                 </li>
                 {links}
-              </ul>
+              </motion.ul>
             )}
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-2xl font-bold">
-            TutorHunt
+          <Link
+            to="/"
+            className="hidden lg:block btn btn-ghost normal-case text-3xl pt-1 font-extrabold italic animate__animated animate__headShake animate__infinite animate__slower"
+          >
+            <div>
+              Tutor<span className="text-primary">Hunt</span>
+            </div>
           </Link>
         </div>
 
@@ -132,20 +159,23 @@ const Navbar = () => {
             title="Toggle Theme"
           >
             {theme === "light" ? (
-              <FaMoon className="text-primary" />
+              <FaMoon className="text-primary transition-transform duration-300 hover:scale-110" />
             ) : (
-              <FaSun className="text-yellow-500" />
+              <FaSun className="text-yellow-500 transition-transform duration-300 hover:scale-110" />
             )}
           </button>
 
+          {/* Profile Section */}
           <div className="relative">
             {user && user.email ? (
-              <img referrerPolicy='no-referrer'
+              <motion.img
+                referrerPolicy="no-referrer"
                 className="w-10 h-10 rounded-full border-2 border-gray-600 cursor-pointer"
                 src={user?.photoURL}
                 alt="User Avatar"
                 onClick={toggleProfileDropdown}
                 title={user.displayName || "User"}
+                whileHover={{ scale: 1.1 }}
               />
             ) : (
               <div
@@ -153,12 +183,17 @@ const Navbar = () => {
                 className="cursor-pointer"
                 title="Please log in"
               >
-                <FaCircleUser className="text-4xl" />
+                <FaCircleUser className="text-4xl text-gray-600" />
               </div>
             )}
 
             {profileDropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-base-100 shadow-lg rounded-box w-52 border-2 border-base-300 z-20">
+              <motion.div
+                className="absolute right-0 mt-2 bg-base-100 shadow-lg rounded-box w-52 border-2 border-base-300 z-20"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
                 {user && user.email ? (
                   <p className="font-semibold text-center py-2">
                     {user.displayName}
@@ -168,10 +203,11 @@ const Navbar = () => {
                     Please log in
                   </p>
                 )}
-              </div>
+              </motion.div>
             )}
           </div>
 
+          {/* Login/Logout Button */}
           {user && user?.email ? (
             <Link
               onClick={handleLogout}
@@ -191,7 +227,7 @@ const Navbar = () => {
             )
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -86,7 +86,7 @@ const Stat = () => {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         {stats.map((stat, index) => (
           <div key={index} className="stat-item">
-            <h3 className="text-4xl font-bold text-primary">
+            <h3 className="text-4xl font-extrabold text-indigo-600">
               {isVisible ? (
                 <CountUp
                   start={0}
@@ -98,7 +98,7 @@ const Stat = () => {
                 "0" // Show 0 if not in view
               )}
             </h3>
-            <p className="text-lg text-gray-500">{stat.label}</p>
+            <p className="text-lg font-semibold text-gray-500">{stat.label}</p>
           </div>
         ))}
       </div>
