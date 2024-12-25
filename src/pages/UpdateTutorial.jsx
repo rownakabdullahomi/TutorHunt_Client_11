@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateTutorial = () => {
   const { id } = useParams();
   const [tutorial, setTutorial] = useState(null);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/language_categories`
+        const { data } = await axiosSecure.get(
+          `/language_categories`
         );
-        console.log(data);
+        // console.log(data);
         setCategories(data);
       } catch (error) {
         console.error("Error fetching categories:", error.message);
@@ -23,41 +24,42 @@ const UpdateTutorial = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, [axiosSecure]);
 
   // Fetch the tutorial details
   useEffect(() => {
     const fetchTutorial = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/tutorial/${id}`
+        const { data } = await axiosSecure.get(
+          `/tutorial/${id}`
         );
-        console.log(data);
+        // console.log(data);
         setTutorial(data);
       } catch (error) {
-        console.error("Error fetching tutorial:", error.message);
-        toast.error("Failed to fetch tutorial details.");
+        // console.error("Error fetching tutorial:", error.message);
+        toast.error("Failed to fetch tutorial details.", error.message);
       }
     };
 
     fetchTutorial();
-  }, [id]);
+  }, [axiosSecure, id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const updatedData = Object.fromEntries(formData.entries());
+  
 
     try {
-      await axios.patch(
-        `${import.meta.env.VITE_API_URL}/update_tutorial/${id}`,
+      await axiosSecure.patch(
+        `/update_tutorial/${id}`,
         updatedData
       );
       toast.success("Tutorial updated successfully!");
       navigate("/my_tutorials");
     } catch (error) {
-      console.error("Error updating tutorial:", error.message);
-      toast.error("Failed to update tutorial.");
+      // console.error("Error updating tutorial:", error.message);
+      toast.error("Failed to update tutorial.", error.message);
     }
   };
 

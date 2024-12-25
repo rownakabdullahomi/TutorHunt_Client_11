@@ -1,20 +1,21 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "./Loading";
+
 
 const MyTutorials = () => {
+  const axiosSecure = useAxiosSecure();
   const [tutorials, setTutorials] = useState([]);
   const { user } = useContext(AuthContext);
+  
 
   useEffect(() => {
     const fetchTutorials = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/tutorials/${user?.email}`
-        );
+        const { data } = await axiosSecure.get(`/tutorials/${user?.email}`);
         setTutorials(data);
       } catch (error) {
         console.error("Error fetching tutorials:", error.message);
@@ -22,7 +23,7 @@ const MyTutorials = () => {
     };
 
     fetchTutorials();
-  }, [user?.email]);
+  }, [axiosSecure, user?.email]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -36,7 +37,7 @@ const MyTutorials = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          axios.delete(`${import.meta.env.VITE_API_URL}/delete_tutorial/${id}`);
+          axiosSecure.delete(`/delete_tutorial/${id}`);
           setTutorials(tutorials.filter((tutorial) => tutorial._id !== id));
         } catch (error) {
           console.log("Failed to delete tutorial.", error.message);
@@ -49,6 +50,10 @@ const MyTutorials = () => {
       }
     });
   };
+
+  if(!tutorials){
+    <Loading></Loading>
+  }
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg shadow-lg">

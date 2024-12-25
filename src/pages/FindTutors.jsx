@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 const FindTutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -39,6 +40,11 @@ const FindTutors = () => {
     setSearchText("");
     setFilteredTutors(tutors);
   };
+
+if(!tutors.length === 0){
+  <Loading></Loading>
+}
+
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -83,6 +89,9 @@ const FindTutors = () => {
                 <h3 className="text-xl font-semibold text-indigo-700">
                   {tutor.name}
                 </h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  Email: {tutor.email}
+                </p>
                 <p className="text-sm text-gray-600 mt-1">
                   Language: {tutor.language}
                 </p>

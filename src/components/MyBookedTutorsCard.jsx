@@ -1,20 +1,21 @@
 /* eslint-disable react/prop-types */
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loading from "../pages/Loading";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyBookedTutorsCard = ({ tutorId }) => {
   const [bookedTutor, setBookedTutor] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosSecure = useAxiosSecure();
   // console.log(tutorId);
 
   useEffect(() => {
     const fetchTutorDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/tutorial/${tutorId}`
+        const { data } = await axiosSecure.get(
+          `/tutorial/${tutorId}`
         );
         setBookedTutor(data);
       } catch (error) {
@@ -26,32 +27,32 @@ const MyBookedTutorsCard = ({ tutorId }) => {
 
     fetchTutorDetails();
     // setLoading(false);
-  }, [tutorId]);
+  }, [axiosSecure, tutorId]);
 
-  console.log(bookedTutor);
+  // console.log(bookedTutor);
 
   const handleReview = async (id) => {
     try {
-      const response = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/update_tutorial_review/${id}`
+      const response = await axiosSecure.patch(
+        `/update_tutorial_review/${id}`
       );
 
-      console.log("Server Response:", response.data.modifiedCount);
+      // console.log("Server Response:", response.data.modifiedCount);
 
       if (response.data.modifiedCount > 0) {
         toast.success("Review added successfully!");
         // Re-fetch updated tutors list
-        const { data: updatedTutors } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/tutorial/${tutorId}`
+        const { data: updatedTutors } = await axiosSecure.get(
+          `/tutorial/${tutorId}`
         );
-        console.log(updatedTutors);
+        // console.log(updatedTutors);
         setBookedTutor(updatedTutors); // Sync state with latest data
       } else {
         toast.error(response.data.message || "Failed to add review.");
       }
     } catch (error) {
-      console.error("Error in handleReview:", error);
-      toast.error("Failed to add review.");
+      // console.error("Error in handleReview:", error);
+      toast.error("Failed to add review.", error.message);
     }
   };
 
@@ -59,20 +60,8 @@ const MyBookedTutorsCard = ({ tutorId }) => {
     return <Loading></Loading>;
   }
 
-  if (!bookedTutor) {
-    return (
-      <div className="container mx-auto p-6">
-        <h2 className="text-2xl font-bold text-center">My Booked Tutors</h2>
-        <p className="text-center text-gray-600 mt-4">
-          You haven&apos;t booked any tutors yet.
-        </p>
-      </div>
-    );
-  }
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">My Booked Tutors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
         <div className="card bg-white shadow-md rounded-lg p-4 border border-gray-200">
           <img
             src={bookedTutor?.image}
@@ -80,6 +69,9 @@ const MyBookedTutorsCard = ({ tutorId }) => {
             className="w-full h-48 object-cover rounded-md mb-4"
           />
           <h3 className="text-xl font-semibold mb-2">{bookedTutor?.name}</h3>
+          <p className="text-gray-700">
+            <strong>Tutor Email:</strong> {bookedTutor?.email}
+          </p>
           <p className="text-gray-700">
             <strong>Language:</strong> {bookedTutor?.language}
           </p>
@@ -104,8 +96,7 @@ const MyBookedTutorsCard = ({ tutorId }) => {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+
   );
 };
 

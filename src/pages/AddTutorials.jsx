@@ -1,24 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddTutorials = () => {
   const { user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/language_categories`
+        const { data } = await axiosSecure.get(
+          `/language_categories`
         );
-        console.log(data);
+        // console.log(data);
         setCategories(data);
       } catch (error) {
-        console.error("Error fetching categories:", error.message);
+        toast.error("Error fetching categories:", error.message);
       }
     };
 
@@ -36,11 +37,11 @@ const AddTutorials = () => {
     const data = Object.fromEntries(formData.entries());
     data.review = 0; // Default review value
 
-    console.log("Submitted Data:", data);
+    // console.log("Submitted Data:", data);
 
     try {
       // 1. Make a POST request
-      await axios.post(`${import.meta.env.VITE_API_URL}/add_tutorials`, data);
+      await axiosSecure.post(`/add_tutorial`, data);
 
       // 2. Reset the form
       form.reset();
