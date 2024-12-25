@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
@@ -10,26 +10,19 @@ import {
   TbBuildingCastle,
   TbBuildingMosque,
 } from "react-icons/tb";
+import Loading from "../pages/Loading";
+import toast from "react-hot-toast";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/language_categories_with_counts`
-        );
-        setCategories(data);
-      } catch (error) {
-        console.error("Error fetching categories with counts:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-//   console.log(categories);
+  const { data: categories, isLoading, error } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/language_categories_with_counts`
+      );
+      return data;
+    },
+  });
 
   const icons = {
     English: <FaLandmark className="w-12 h-12"></FaLandmark>,
@@ -47,6 +40,9 @@ const Categories = () => {
     Portuguese: <TbBuildingBank className="w-12 h-12"></TbBuildingBank>,
   };
 
+  if (isLoading) return <Loading></Loading>;
+  if (error) return toast.error("Failed to load categories.");
+
   return (
     <div className="w-11/12 mx-auto">
       <h2 className="text-3xl font-bold text-center my-8">
@@ -61,8 +57,6 @@ const Categories = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                {/* <FaLandmark className="w-12 h-12"></FaLandmark> */}
-                {/* Icons for each language */}
                 {icons[category.language]}
                 <div>
                   <h3 className="text-xl font-semibold">

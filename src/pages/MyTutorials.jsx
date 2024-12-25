@@ -56,7 +56,7 @@ const MyTutorials = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg shadow-lg">
+    <div className="w-11/12 mx-auto my-8 p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
         My Tutorials
       </h2>

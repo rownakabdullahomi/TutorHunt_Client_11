@@ -1,53 +1,52 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import Loading from "./Loading";
+import NoData from "../components/NoData";
 
 const FindTutors = () => {
-  const [tutors, setTutors] = useState([]);
   const [searchText, setSearchText] = useState(""); // For search input
-  const [filteredTutors, setFilteredTutors] = useState([]); // To store filtered results
 
-  // Fetch tutors from the server
-  useEffect(() => {
-    const fetchTutors = async () => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/tutors`
-        );
-        setTutors(data); // Assuming the response is an array of tutor objects
-        setFilteredTutors(data); // Initially, all tutors are displayed
-      } catch (error) {
-        console.error("Error fetching tutors:", error);
-      }
-    };
-    fetchTutors();
-  }, []);
+  // Fetch tutors using TanStack Query
+  const { data: tutors, isLoading, isError, error } = useQuery({
+    queryKey: ["tutors"],
+    queryFn: async () => {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/tutors`);
+      return data; 
+    },
+  });
 
-  // Handle search functionality
+  // Filter tutors based on the search text
+  const filteredTutors = tutors?.filter((tutor) =>
+    tutor.language.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   const handleSearch = (e) => {
-    const text = e.target.value;
-    setSearchText(text);
-
-    // Filter tutors based on whether the search term is anywhere in the language name
-    const filtered = tutors.filter((tutor) =>
-      tutor.language.toLowerCase().includes(text.toLowerCase())
-    );
-    setFilteredTutors(filtered);
+    setSearchText(e.target.value);
   };
 
   const handleReset = () => {
     setSearchText("");
-    setFilteredTutors(tutors);
   };
 
-if(!tutors.length === 0){
-  <Loading></Loading>
-}
+  // Render loading state
+  if (isLoading) {
+    return <Loading />;
+  }
 
+  // Render error state
+  if (isError) {
+    return (
+      <div className="text-center text-red-500">
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
 
+  // Render the main content
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="w-11/12 mx-auto p-6">
       <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
         Find Tutors
       </h2>
@@ -71,7 +70,7 @@ if(!tutors.length === 0){
 
       {/* Tutor Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {filteredTutors.map((tutor) => (
+        {filteredTutors?.map((tutor) => (
           <div
             key={tutor._id}
             className="flex flex-col lg:flex-row bg-base-300 shadow-lg rounded-lg overflow-hidden"
@@ -121,11 +120,7 @@ if(!tutors.length === 0){
       </div>
 
       {/* Show message if no tutors match */}
-      {filteredTutors.length === 0 && (
-        <p className="text-center text-gray-600 mt-6">
-          No tutors found matching your search.
-        </p>
-      )}
+      {filteredTutors?.length === 0 && <NoData />}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import Categories from "../components/Categories";
 import Faq from "../components/Faq";
-import Footer from "../components/Footer";
 import OurPolicies from "../components/OurPolicies";
 import Slider from "../components/Slider";
 import Stat from "../components/Stat";
@@ -23,7 +22,7 @@ const Home = () => {
       </section>
       <section><OurPolicies></OurPolicies></section>
       <section><Faq></Faq></section>
-      <section className="bg-base-300 text-base-content "><Footer></Footer></section>
+      
     </div>
   );
 };

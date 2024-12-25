@@ -34,29 +34,23 @@ const TutorDetails = () => {
   useEffect(() => {
     const checkBookingStatus = async () => {
       try {
-        // console.log(id, user?.email);
         const { data } = await axiosSecure.get(
           `/bookings?tutorId=${id}&userEmail=${user.email}`
         );
-        // console.log(data);
         setIsAlreadyBooked(data?.length > 0); // If booking exists, flag it
       } catch (error) {
-        // console.error(error);
         toast.error("Failed to validate booking.", error);
       }
     };
-
     if (user) checkBookingStatus();
   }, [axiosSecure, id, user]);
 
   const handleBook = async () => {
-
         // Check if the user is trying to book their own tutorial
         if (tutor.email === user.email) {
             toast.error("You cannot book your own tutorial.");
             return;
-          }
-      
+          }    
           // Check if the tutor is already booked by the current user
           if (isAlreadyBooked) {
             toast.error("You have already booked this tutor.");

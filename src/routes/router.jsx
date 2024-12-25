@@ -10,12 +10,13 @@ import MyBookedTutors from "../pages/MyBookedTutors";
 import UpdateTutorial from "../pages/UpdateTutorial";
 import FindTutors from "../pages/FindTutors";
 import TutorDetails from "../pages/TutorDetails";
+import Error404 from "../pages/Error404";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: "404 not found",
+    errorElement: <Error404></Error404>,
     children: [
       {
         path: "/",
