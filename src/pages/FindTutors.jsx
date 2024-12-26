@@ -20,7 +20,7 @@ const FindTutors = () => {
     const fetchCategoryWiseData = async () => {
       if (category) {
         try {
-          const { data } = await axiosSecure.get(`/tutorials/${category}`);
+          const { data } = await axiosSecure.get(`/tutorial_categories/${category}`);
           setCategoryWiseData(data);
         } catch (error) {
           toast.error(error.message);

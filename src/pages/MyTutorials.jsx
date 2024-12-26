@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loading from "./Loading";
-import { motion } from "framer-motion";
 import { Fade, Zoom } from 'react-awesome-reveal';
 
 const MyTutorials = () => {
@@ -60,56 +59,60 @@ const MyTutorials = () => {
       <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
         <Fade duration={3000}>My Tutorials</Fade>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tutorials.map((tutorial) => (
-          <motion.div
-            key={tutorial._id}
-            className="card bg-base-100 shadow-md rounded-lg overflow-hidden flex flex-col h-full"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <Zoom>
-              <img
-                src={tutorial?.image}
-                alt={tutorial?.name}
-                className="w-full h-48 object-contain m-4"
-              />
-            </Zoom>
-            <div className="p-4 flex-grow">
-              <h3 className="text-xl font-semibold mb-2">
-                <Fade>{tutorial?.name}</Fade>
-              </h3>
-              <p className="text-sm mb-1">
-                <strong>Language:</strong> {tutorial?.language}
-              </p>
-              <p className="text-sm mb-1">
-                <strong>Price:</strong> ${tutorial?.price}
-              </p>
-              <p className="text-sm mb-1">
-                <strong>Review:</strong> {tutorial?.review}
-              </p>
-              <p className="text-sm text-gray-500 mt-2 flex-grow">
-                {tutorial?.description.split(" ").slice(0, 50).join(" ")}
-              </p>
-            </div>
-            <div className="p-4 flex justify-between items-center mt-auto">
-              <Link
-                to={`/update_tutorials/${tutorial._id}`}
-                className="btn btn-outline btn-sm text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white"
-              >
-                Update
-              </Link>
-              <button
-                onClick={() => handleDelete(tutorial?._id)}
-                className="btn btn-outline btn-sm text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
-              >
-                Delete
-              </button>
-            </div>
-          </motion.div>
-        ))}
+      <div id="#scroll_bar" className="overflow-x-auto scrollbar-hide rounded-lg">
+        <table className="table w-full border-collapse border-2 border-gray-300">
+          <thead>
+            <tr className="bg-indigo-700 text-white">
+              <th className="p-4 text-left">#</th>
+              <th className="p-4 text-left">Image</th>
+              <th className="p-4 text-left">Name</th>
+              <th className="p-4 text-left">Language</th>
+              <th className="p-4 text-left">Price</th>
+              <th className="p-4 text-left">Review</th>
+              <th className="p-4 text-left">Description</th>
+              <th className="p-4 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tutorials.map((tutorial, index) => (
+              <tr key={tutorial._id} className="hover:bg-gray-100">
+                <td className="p-4 align-middle">{index + 1}</td>
+                <td className="p-4 align-middle">
+                  <Zoom duration={2000}>
+                    <img
+                      src={tutorial?.image}
+                      alt={tutorial?.name}
+                      className="w-20 h-20 object-cover rounded-lg"
+                    />
+                  </Zoom>
+                </td>
+                <td className="p-4 align-middle">{tutorial?.name}</td>
+                <td className="p-4 align-middle">{tutorial?.language}</td>
+                <td className="p-4 align-middle">${tutorial?.price}</td>
+                <td className="p-4 align-middle">{tutorial?.review}</td>
+                <td className="p-4 align-middle">
+                  {tutorial?.description.split(" ").slice(0, 20).join(" ")}...
+                </td>
+                <td className="p-4 align-middle">
+                  <div className="flex items-center space-x-2">
+                    <Link
+                      to={`/update_tutorials/${tutorial._id}`}
+                      className="btn btn-outline btn-sm text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white"
+                    >
+                      Update
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(tutorial._id)}
+                      className="btn btn-outline btn-sm text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

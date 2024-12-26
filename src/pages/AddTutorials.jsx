@@ -23,7 +23,7 @@ const AddTutorials = () => {
     };
 
     fetchCategories();
-  }, []); // Runs only once when the component mounts
+  }, [axiosSecure]); // Runs only once when the component mounts
 
   const handleSubmit = async (e) => {
     e.preventDefault();
