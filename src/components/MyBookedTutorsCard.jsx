@@ -73,22 +73,22 @@ const MyBookedTutorsCard = ({ tutorId }) => {
               className="w-full h-32 object-cover rounded-md mb-4"
             />
             <h3 className="text-xl font-semibold mb-2">{bookedTutor?.name}</h3>
-            <p className="text-gray-700">
+            <p>
               <strong>Tutor Email:</strong> {bookedTutor?.email}
             </p>
-            <p className="text-gray-700">
+            <p>
               <strong>Language:</strong> {bookedTutor?.language}
             </p>
-            <p className="text-gray-700">
+            <p>
               <strong>Price:</strong> ${bookedTutor?.price}
             </p>
-            <p className="text-gray-700">
+            <p>
               <strong>Tutor Email:</strong> {bookedTutor?.tutorEmail}
             </p>
-            <p className="text-gray-700">
+            <p>
               <strong>Reviews:</strong> {bookedTutor?.review || 0}
             </p>
-            <p className="text-gray-600 my-1">
+            <p className="text-gray-500 my-1">
               {bookedTutor?.description.split(" ").slice(0, 3).join(" ")}...
             </p>
           </div>
