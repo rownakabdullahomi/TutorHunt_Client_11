@@ -29,6 +29,8 @@ const Categories = () => {
     },
   });
 
+  // console.log(categories);
+
   const icons = {
     English: <FaLandmark className="w-12 h-12"></FaLandmark>,
     Spanish: <FaArchway className="w-12 h-12"></FaArchway>,
@@ -58,7 +60,7 @@ const Categories = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {categories.map((category) => (
           <Link
-            to={"/find_tutors"}
+            to={`/find_tutors/${category.language}`}
             key={category._id}
             className="cursor-pointer bg-base-100 shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg transition-transform transform hover:scale-105"
           >
@@ -83,18 +85,3 @@ const Categories = () => {
 
 export default Categories;
 
-// const icons = {
-//   English: <FaLandmark className="w-12 h-12"></FaLandmark>,
-//   Spanish: <FaArchway className="w-12 h-12"></FaArchway>,
-//   French: <FaRegBuilding className="w-12 h-12"></FaRegBuilding>,
-//   German: <BsBuildings className="w-12 h-12"></BsBuildings>,
-//   Italian: (
-//     <PiBuildingApartmentBold className="w-12 h-12"></PiBuildingApartmentBold>
-//   ),
-//   Chinese: (
-//     <PiBuildingOfficeBold className="w-12 h-12"></PiBuildingOfficeBold>
-//   ),
-//   Arabic: <TbBuildingMosque className="w-12 h-12"></TbBuildingMosque>,
-//   Japanese: <TbBuildingCastle className="w-12 h-12"></TbBuildingCastle>,
-//   Portuguese: <TbBuildingBank className="w-12 h-12"></TbBuildingBank>,
-// };

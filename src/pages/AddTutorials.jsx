@@ -3,6 +3,8 @@ import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { motion } from "framer-motion";
+import { Fade } from "react-awesome-reveal"; // React Awesome Reveal for fade effects
 
 const AddTutorials = () => {
   const { user } = useContext(AuthContext);
@@ -13,10 +15,7 @@ const AddTutorials = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axiosSecure.get(
-          `/language_categories`
-        );
-        // console.log(data);
+        const { data } = await axiosSecure.get(`/language_categories`);
         setCategories(data);
       } catch (error) {
         toast.error("Error fetching categories:", error.message);
@@ -26,8 +25,6 @@ const AddTutorials = () => {
     fetchCategories();
   }, []); // Runs only once when the component mounts
 
-//   console.log(categories);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -36,8 +33,6 @@ const AddTutorials = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     data.review = 0; // Default review value
-
-    // console.log("Submitted Data:", data);
 
     try {
       // 1. Make a POST request
@@ -50,22 +45,30 @@ const AddTutorials = () => {
       toast.success("Data Added Successfully!!!");
       navigate("/my_tutorials");
     } catch (error) {
-      //   console.log(error);
       toast.error(error.message);
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg rounded-lg my-10">
-      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6 lg:mb-12">
-        Add a New Tutorial
-      </h2>
-      <form
+    <div className="max-w-4xl mx-auto p-6 bg-base-300 shadow-lg rounded-lg my-10">
+      <Fade triggerOnce>
+        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6 lg:mb-12">
+          Add a New Tutorial
+        </h2>
+      </Fade>
+      <motion.form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {/* User Name */}
-        <div>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <label className="block font-medium mb-2 text-indigo-700">Name</label>
           <input
             type="text"
@@ -76,12 +79,15 @@ const AddTutorials = () => {
             required
             readOnly
           />
-        </div>
+        </motion.div>
+
         {/* User Email */}
-        <div>
-          <label className="block font-medium mb-2 text-indigo-700">
-            Email
-          </label>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <label className="block font-medium mb-2 text-indigo-700">Email</label>
           <input
             type="email"
             name="email"
@@ -91,12 +97,15 @@ const AddTutorials = () => {
             required
             readOnly
           />
-        </div>
+        </motion.div>
+
         {/* Image */}
-        <div>
-          <label className="block font-medium mb-2 text-indigo-700">
-            Image URL
-          </label>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <label className="block font-medium mb-2 text-indigo-700">Image URL</label>
           <input
             type="url"
             name="image"
@@ -104,13 +113,15 @@ const AddTutorials = () => {
             placeholder="Enter tutorial image URL"
             required
           />
-        </div>
+        </motion.div>
 
         {/* Language */}
-        <div>
-          <label className="block font-medium mb-2 text-indigo-700">
-            Language
-          </label>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <label className="block font-medium mb-2 text-indigo-700">Language</label>
           <select
             name="language"
             className="select select-bordered w-full border-indigo-300 focus:border-indigo-500"
@@ -118,16 +129,20 @@ const AddTutorials = () => {
           >
             <option value="">Select a language</option>
             {categories.map((category) => (
-              <option key={category._id} value={category.value}>{category.value}</option>
+              <option key={category._id} value={category.value}>
+                {category.value}
+              </option>
             ))}
           </select>
-        </div>
+        </motion.div>
 
         {/* Price */}
-        <div>
-          <label className="block font-medium mb-2 text-indigo-700">
-            Price
-          </label>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <label className="block font-medium mb-2 text-indigo-700">Price</label>
           <input
             type="number"
             name="price"
@@ -135,50 +150,57 @@ const AddTutorials = () => {
             placeholder="Enter price"
             required
           />
-        </div>
+        </motion.div>
+
         {/* Review */}
-        <div>
-          <label className="block font-medium mb-2 text-indigo-700">
-            Review
-          </label>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <label className="block font-medium mb-2 text-indigo-700">Review</label>
           <input
             type="number"
             name="review"
-
             className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
             placeholder="0"
             readOnly
           />
-        </div>
+        </motion.div>
+
         {/* Description */}
-        <div className="md:col-span-2">
-          <label className="block font-medium mb-2 text-indigo-700">
-            Description
-          </label>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="md:col-span-2"
+        >
+          <label className="block font-medium mb-2 text-indigo-700">Description</label>
           <textarea
             name="description"
             className="textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"
             placeholder="Enter description"
             required
           ></textarea>
-        </div>
+        </motion.div>
+
         {/* Submit Button */}
-        <div className="md:col-span-2">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="md:col-span-2"
+        >
           <button
             type="submit"
             className="btn btn-primary btn-outline w-full btn-neutral"
           >
             Submit Tutorial
           </button>
-        </div>
-      </form>
+        </motion.div>
+      </motion.form>
     </div>
   );
 };
 
 export default AddTutorials;
-
-
-
-
-

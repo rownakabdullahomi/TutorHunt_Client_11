@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loading from "./Loading";
-
+import { motion } from "framer-motion";
+import { Fade, Zoom } from 'react-awesome-reveal';
 
 const MyTutorials = () => {
   const axiosSecure = useAxiosSecure();
   const [tutorials, setTutorials] = useState([]);
   const { user } = useContext(AuthContext);
-  
 
   useEffect(() => {
     const fetchTutorials = async () => {
@@ -51,40 +51,46 @@ const MyTutorials = () => {
     });
   };
 
-  if(!tutorials){
-    <Loading></Loading>
+  if (!tutorials) {
+    return <Loading />;
   }
 
   return (
-    <div className="w-11/12 mx-auto my-8 p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg shadow-lg">
+    <div className="w-11/12 mx-auto my-8 p-6 bg-base-300 rounded-lg shadow-lg animate__animated animate__fadeIn animate__slower">
       <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
-        My Tutorials
+        <Fade duration={3000}>My Tutorials</Fade>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tutorials.map((tutorial) => (
-          <div
+          <motion.div
             key={tutorial._id}
-            className="card bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full"
+            className="card bg-base-100 shadow-md rounded-lg overflow-hidden flex flex-col h-full"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
           >
-            <img
-              src={tutorial?.image}
-              alt={tutorial?.name}
-              className="w-full h-48 object-contain m-4"
-            />
+            <Zoom>
+              <img
+                src={tutorial?.image}
+                alt={tutorial?.name}
+                className="w-full h-48 object-contain m-4"
+              />
+            </Zoom>
             <div className="p-4 flex-grow">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                {tutorial?.name}
+              <h3 className="text-xl font-semibold mb-2">
+                <Fade>{tutorial?.name}</Fade>
               </h3>
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm mb-1">
                 <strong>Language:</strong> {tutorial?.language}
               </p>
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm mb-1">
                 <strong>Price:</strong> ${tutorial?.price}
               </p>
-              <p className="text-sm text-gray-500 mb-1">
+              <p className="text-sm mb-1">
                 <strong>Review:</strong> {tutorial?.review}
               </p>
-              <p className="text-sm text-gray-700 mb-3 flex-grow">
+              <p className="text-sm text-gray-500 mt-2 flex-grow">
                 {tutorial?.description.split(" ").slice(0, 50).join(" ")}
               </p>
             </div>
@@ -102,7 +108,7 @@ const MyTutorials = () => {
                 Delete
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

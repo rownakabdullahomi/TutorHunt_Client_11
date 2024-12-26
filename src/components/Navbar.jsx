@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../providers/AuthProvider";
 import { FaCircleUser } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
@@ -88,7 +89,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 shadow-md transition-all duration-300">
+    <div
+      id="navbar"
+      className="bg-base-100 shadow-md transition-all duration-300"
+    >
       <motion.div
         className="navbar w-11/12 mx-auto"
         initial={{ opacity: 0, y: -20 }}
@@ -154,7 +158,7 @@ const Navbar = () => {
         <div className="navbar-end space-x-4">
           {/* Theme Toggle */}
           <button
-            className="btn btn-ghost text-lg"
+            className="btn btn-ghost text-2xl "
             onClick={toggleTheme}
             title="Toggle Theme"
           >
@@ -211,18 +215,18 @@ const Navbar = () => {
           {user && user?.email ? (
             <Link
               onClick={handleLogout}
-              className="btn btn-sm btn-outline btn-primary"
+              className="btn btn-sm btn-outline btn-primary flex items-center gap-2"
             >
-              Logout
+              <FiLogOut className="text-red-600" /> Logout
             </Link>
           ) : (
             location.pathname !== "/register" &&
             location.pathname !== "/login" && (
               <Link
                 to="/login"
-                className="btn btn-sm btn-outline btn-primary md:px-6"
+                className="btn btn-sm btn-outline btn-primary md:px-6 flex items-center gap-2"
               >
-                Login
+                <FiLogIn className="text-green-600" /> Login
               </Link>
             )
           )}

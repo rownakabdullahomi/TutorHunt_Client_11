@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import MyBookedTutorsCard from "../components/MyBookedTutorsCard";
 import Loading from "./Loading";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Slide } from "react-awesome-reveal";
 
 const MyBookedTutors = () => {
   const { user } = useContext(AuthContext);
@@ -41,7 +42,7 @@ const MyBookedTutors = () => {
 
   // Handle Loading State
   if (loading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   // Handle Empty Booked Tutors State
@@ -49,6 +50,7 @@ const MyBookedTutors = () => {
     return (
       <div className="container mx-auto p-6">
         <h2 className="text-2xl font-bold text-center">My Booked Tutors</h2>
+
         <p className="text-center text-gray-600 mt-4">
           You haven&apos;t booked any tutors yet.
         </p>
@@ -58,8 +60,11 @@ const MyBookedTutors = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">My Booked Tutors</h2>
-
+      <Slide cascade direction="right" duration={2000}>
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          My Booked Tutors
+        </h2>
+      </Slide>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {bookedTutors.map((bookedTutor) => (
           <MyBookedTutorsCard
