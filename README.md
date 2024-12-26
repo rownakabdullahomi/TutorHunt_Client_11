@@ -34,6 +34,9 @@ TutorHunt aims to simplify the process of finding and booking language tutors on
 - 🔖 **Bookings**:
   - Book tutors and view booking history for authenticated users.
   - Prevent unauthorized access to booking data using JWT verification.
+- 📊 **Statistics**:
+  - Show real time statistics to users.
+  - Active users, reviews, total tutors shows dynamically.
 - 💾 **Database Operations**:
   - CRUD operations for tutors, users, and bookings.
   - Aggregation queries for counting and calculating reviews.
@@ -135,13 +138,33 @@ This project demonstrates key React concepts, including:
 - 📡 **Firebase**: For client deployment.
 ---
 
-## 🌀 NPM Packages Used
-- [express](https://www.npmjs.com/package/express): Web framework for Node.js.
-- [mongodb](https://www.npmjs.com/package/mongodb): MongoDB driver for Node.js.
-- [dotenv](https://www.npmjs.com/package/dotenv): Load environment variables.
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken): For token-based authentication.
-- [cookie-parser](https://www.npmjs.com/package/cookie-parser): Parse and manage cookies.
-- [cors](https://www.npmjs.com/package/cors): Enable cross-origin resource sharing.
+
+## 🌀 Dependencies and Tools Used
+- [react](https://www.npmjs.com/package/react): A JavaScript library for building user interfaces.
+- [react-dom](https://www.npmjs.com/package/react-dom): Provides DOM-specific methods for React.
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom): Declarative routing for React applications.
+- [daisyui](https://www.npmjs.com/package/daisyui): Tailwind CSS components for faster UI development.
+- [tailwindcss](https://www.npmjs.com/package/tailwindcss): A utility-first CSS framework.
+- [animate.css](https://www.npmjs.com/package/animate.css): CSS animations for enhanced user experiences.
+- [framer-motion](https://www.npmjs.com/package/framer-motion): A library for creating smooth animations.
+- [react-awesome-reveal](https://www.npmjs.com/package/react-awesome-reveal): Animation library built on React and Framer Motion.
+- [swiper](https://www.npmjs.com/package/swiper): Modern touch slider for beautiful carousels.
+- [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): Powerful data-fetching library for React.
+- [axios](https://www.npmjs.com/package/axios): Promise-based HTTP client for fetching data.
+- [firebase](https://www.npmjs.com/package/firebase): Backend platform for authentication and data storage.
+- [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): Lightweight notifications for React.
+- [sweetalert2](https://www.npmjs.com/package/sweetalert2): A library for creating customizable modals.
+- [react-icons](https://www.npmjs.com/package/react-icons): Comprehensive icon set for React applications.
+- [react-countup](https://www.npmjs.com/package/react-countup): React component for animated number counters.
+- [lottie-react](https://www.npmjs.com/package/lottie-react): Lottie animations for React.
+- [react-fast-marquee](https://www.npmjs.com/package/react-fast-marquee): Smooth scrolling marquee for React.
+- [react-spinners](https://www.npmjs.com/package/react-spinners): Loading spinner components.
+- [vite](https://www.npmjs.com/package/vite): Next-generation frontend tooling for fast builds and development.
+- [eslint](https://www.npmjs.com/package/eslint): Linter for identifying and fixing code issues.
+- [@vitejs/plugin-react](https://www.npmjs.com/package/@vitejs/plugin-react): Official React plugin for Vite.
+- [autoprefixer](https://www.npmjs.com/package/autoprefixer): Automatically adds vendor prefixes to CSS rules.
+- [postcss](https://www.npmjs.com/package/postcss): A tool for transforming CSS with plugins.
+
 
 ---
 
