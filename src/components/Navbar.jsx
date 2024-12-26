@@ -94,12 +94,13 @@ const Navbar = () => {
       className="bg-base-100 shadow-md transition-all duration-300"
     >
       <motion.div
-        className="navbar w-11/12 mx-auto"
+        className="navbar w-11/12 mx-auto justify-between py-2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="navbar-start">
+        {/* Navbar Start */}
+        <div className="flex items-center">
           {/* Mobile Menu Dropdown */}
           <div className="dropdown">
             <button
@@ -151,11 +152,13 @@ const Navbar = () => {
           </Link>
         </div>
 
+        {/* Navbar Center */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-4">{links}</ul>
         </div>
 
-        <div className="navbar-end space-x-4">
+        {/* Navbar End */}
+        <div className="flex items-center space-x-4">
           {/* Theme Toggle */}
           <button
             className="btn btn-ghost text-2xl "
