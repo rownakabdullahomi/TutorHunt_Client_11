@@ -209,7 +209,10 @@ const FindTutors = () => {
       {filteredTutors?.length === 0 && <NoData />}
 
       <Fade duration={1500}>
-        <div className="mt-6 flex items-center justify-center space-x-2">
+        <div
+          className="mt-6 flex flex-wrap justify-center items-center space-x-2"
+          style={{ gap: "0.5rem" }}
+        >
           <button
             onClick={() => handlePageChange(page - 1)}
             disabled={page === 1}
