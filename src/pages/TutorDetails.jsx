@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 import Loading from "./Loading";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const TutorDetails = () => {
   const { id } = useParams();
@@ -16,9 +17,7 @@ const TutorDetails = () => {
   useEffect(() => {
     const fetchTutorDetails = async () => {
       try {
-        const { data } = await axiosSecure.get(
-          `/tutorial/${id}`
-        );
+        const { data } = await axiosSecure.get(`/tutorial/${id}`);
         setTutor(data);
       } catch (error) {
         toast.error("Error fetching tutor details:", error);
@@ -27,8 +26,6 @@ const TutorDetails = () => {
 
     fetchTutorDetails();
   }, [axiosSecure, id]);
-
-
 
   // Check if the tutor is already booked by the user
   useEffect(() => {
@@ -46,17 +43,16 @@ const TutorDetails = () => {
   }, [axiosSecure, id, user]);
 
   const handleBook = async () => {
-        // Check if the user is trying to book their own tutorial
-        if (tutor.email === user.email) {
-            toast.error("You cannot book your own tutorial.");
-            return;
-          }    
-          // Check if the tutor is already booked by the current user
-          if (isAlreadyBooked) {
-            toast.error("You have already booked this tutor.");
-            return;
-          }
-
+    // Check if the user is trying to book their own tutorial
+    if (tutor.email === user.email) {
+      toast.error("You cannot book your own tutorial.");
+      return;
+    }
+    // Check if the tutor is already booked by the current user
+    if (isAlreadyBooked) {
+      toast.error("You have already booked this tutor.");
+      return;
+    }
 
     const bookingDetails = {
       tutorId: tutor._id,
@@ -67,15 +63,10 @@ const TutorDetails = () => {
       userEmail: user.email,
     };
 
-    
-
     try {
-      await axiosSecure.post(
-        `/bookings`,
-        bookingDetails
-      );
+      await axiosSecure.post(`/bookings`, bookingDetails);
       toast.success("Tutor booked successfully!");
-      setIsAlreadyBooked(true)
+      setIsAlreadyBooked(true);
       navigate("/my_booked_tutors");
     } catch (error) {
       console.error("Error booking tutor:", error);
@@ -87,11 +78,15 @@ const TutorDetails = () => {
     return <Loading></Loading>;
   }
 
-//   Check if user and tutor is the same person? if yes then book button should be disabled
-//   const isBookDisabled = user?.email === tutor.email;
+  //   Check if user and tutor is the same person? if yes then book button should be disabled
+  //   const isBookDisabled = user?.email === tutor.email;
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg rounded-lg my-10">
+      <Helmet>
+        <title>Tutor Details | TutorHunt</title>
+      </Helmet>
+
       <div className="flex flex-col lg:flex-row items-center gap-6">
         <img
           src={tutor?.image}

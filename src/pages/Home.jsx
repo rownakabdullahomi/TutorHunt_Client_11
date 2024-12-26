@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Categories from "../components/Categories";
 import Faq from "../components/Faq";
 import OurPolicies from "../components/OurPolicies";
@@ -8,6 +9,10 @@ import WhyChooseUs from "../components/WhyChooseUs";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home | TutorHunt</title>
+      </Helmet>
+
       <section>
         <Slider></Slider>
       </section>
@@ -20,9 +25,12 @@ const Home = () => {
       <section>
         <WhyChooseUs></WhyChooseUs>
       </section>
-      <section><OurPolicies></OurPolicies></section>
-      <section><Faq></Faq></section>
-      
+      <section>
+        <OurPolicies></OurPolicies>
+      </section>
+      <section>
+        <Faq></Faq>
+      </section>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal"; // React Awesome Reveal for fade effects
+import { Helmet } from "react-helmet-async";
 
 const AddTutorials = () => {
   const { user } = useContext(AuthContext);
@@ -51,6 +52,10 @@ const AddTutorials = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-base-300 shadow-lg rounded-lg my-10">
+      <Helmet>
+        <title>Add Tutorials | TutorHunt</title>
+      </Helmet>
+
       <Fade triggerOnce>
         <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6 lg:mb-12">
           Add a New Tutorial
@@ -87,7 +92,9 @@ const AddTutorials = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <label className="block font-medium mb-2 text-indigo-700">Email</label>
+          <label className="block font-medium mb-2 text-indigo-700">
+            Email
+          </label>
           <input
             type="email"
             name="email"
@@ -105,7 +112,9 @@ const AddTutorials = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <label className="block font-medium mb-2 text-indigo-700">Image URL</label>
+          <label className="block font-medium mb-2 text-indigo-700">
+            Image URL
+          </label>
           <input
             type="url"
             name="image"
@@ -121,7 +130,9 @@ const AddTutorials = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <label className="block font-medium mb-2 text-indigo-700">Language</label>
+          <label className="block font-medium mb-2 text-indigo-700">
+            Language
+          </label>
           <select
             name="language"
             className="select select-bordered w-full border-indigo-300 focus:border-indigo-500"
@@ -142,7 +153,9 @@ const AddTutorials = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <label className="block font-medium mb-2 text-indigo-700">Price</label>
+          <label className="block font-medium mb-2 text-indigo-700">
+            Price
+          </label>
           <input
             type="number"
             name="price"
@@ -158,7 +171,9 @@ const AddTutorials = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <label className="block font-medium mb-2 text-indigo-700">Review</label>
+          <label className="block font-medium mb-2 text-indigo-700">
+            Review
+          </label>
           <input
             type="number"
             name="review"
@@ -175,7 +190,9 @@ const AddTutorials = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="md:col-span-2"
         >
-          <label className="block font-medium mb-2 text-indigo-700">Description</label>
+          <label className="block font-medium mb-2 text-indigo-700">
+            Description
+          </label>
           <textarea
             name="description"
             className="textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"

@@ -6,13 +6,3 @@
     background-color: blue;
     color: white;
 }
-
-#scroll_bar .scrollbar-hide {
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-  }
-  
- #scroll_bar .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
-  }
-  

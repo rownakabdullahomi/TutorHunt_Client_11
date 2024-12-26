@@ -7,6 +7,7 @@ import { Fade, Slide, Zoom } from "react-awesome-reveal";
 import { motion } from "framer-motion";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const FindTutors = () => {
   const [categoryWiseData, setCategoryWiseData] = useState(null);
@@ -20,7 +21,9 @@ const FindTutors = () => {
     const fetchCategoryWiseData = async () => {
       if (category) {
         try {
-          const { data } = await axiosSecure.get(`/tutorial_categories/${category}`);
+          const { data } = await axiosSecure.get(
+            `/tutorial_categories/${category}`
+          );
           setCategoryWiseData(data);
         } catch (error) {
           toast.error(error.message);
@@ -107,6 +110,10 @@ const FindTutors = () => {
   // Render the main content
   return (
     <div className="w-11/12 mx-auto p-6">
+      <Helmet>
+        <title>Find Tutors | TutorHunt</title>
+      </Helmet>
+
       <Zoom duration={2000}>
         <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
           {category ? `${category} Tutors` : "Find Tutors"}

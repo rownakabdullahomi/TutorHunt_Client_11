@@ -5,6 +5,8 @@ import MyBookedTutorsCard from "../components/MyBookedTutorsCard";
 import Loading from "./Loading";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Slide } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
+import NoData from "../components/NoData";
 
 const MyBookedTutors = () => {
   const { user } = useContext(AuthContext);
@@ -48,18 +50,16 @@ const MyBookedTutors = () => {
   // Handle Empty Booked Tutors State
   if (!bookedTutors || bookedTutors.length === 0) {
     return (
-      <div className="container mx-auto p-6">
-        <h2 className="text-2xl font-bold text-center">My Booked Tutors</h2>
-
-        <p className="text-center text-gray-600 mt-4">
-          You haven&apos;t booked any tutors yet.
-        </p>
-      </div>
+      <NoData></NoData>
     );
   }
 
   return (
     <div className="container mx-auto p-6">
+      <Helmet>
+        <title>My Booked Tutors | TutorHunt</title>
+      </Helmet>
+
       <Slide cascade direction="right" duration={2000}>
         <h2 className="text-3xl font-bold mb-6 text-center">
           My Booked Tutors

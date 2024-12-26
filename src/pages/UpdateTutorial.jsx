@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Fade, Slide } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 
 const UpdateTutorial = () => {
   const { id } = useParams();
@@ -57,19 +58,22 @@ const UpdateTutorial = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-base-300 shadow-lg rounded-lg my-10">
+      <Helmet>
+        <title>Update Tutorial | TutorHunt</title>
+      </Helmet>
+
       <Fade duration={3000}>
         <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
           Update Tutorial
         </h2>
       </Fade>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col h-full"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
           <Slide direction="left" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">Name</label>
+              <label className="block font-medium mb-2 text-indigo-700">
+                Name
+              </label>
               <input
                 type="text"
                 name="name"
@@ -81,7 +85,9 @@ const UpdateTutorial = () => {
           </Slide>
           <Slide direction="right" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">Email</label>
+              <label className="block font-medium mb-2 text-indigo-700">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -126,7 +132,9 @@ const UpdateTutorial = () => {
           </Slide>
           <Slide direction="left" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">Price</label>
+              <label className="block font-medium mb-2 text-indigo-700">
+                Price
+              </label>
               <input
                 type="number"
                 name="price"
@@ -151,17 +159,17 @@ const UpdateTutorial = () => {
             </div>
           </Slide>
           {/* Description */}
-        <div className="md:col-span-2">
-          <label className="block font-medium mb-2 text-indigo-700">
-            Description
-          </label>
-          <textarea
-            name="description"
-            defaultValue={tutorial.description}
-            className="mb-2 textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"
-            required
-          ></textarea>
-        </div>
+          <div className="md:col-span-2">
+            <label className="block font-medium mb-2 text-indigo-700">
+              Description
+            </label>
+            <textarea
+              name="description"
+              defaultValue={tutorial.description}
+              className="mb-2 textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"
+              required
+            ></textarea>
+          </div>
         </div>
         <Fade triggerOnce>
           <div className="flex-grow flex items-end">
