@@ -29,8 +29,7 @@
 
 ### 🔑 **Authentication & Security**  
 - Secure **Firebase Authentication** (Google & Email/Password login).  
-- JWT token-based authorization for protected routes.  
-- Role-based access control for students and tutors.  
+- JWT token-based authorization for protected routes.    
 
 ### 📚 **Tutor Management**  
 - Add, update, and delete tutor profiles.  
