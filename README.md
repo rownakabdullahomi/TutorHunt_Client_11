@@ -94,7 +94,7 @@ Ensure you have **Node.js (v16+)** and **npm/yarn** installed.
 ### 2️⃣ Clone the Repository  
 ```sh
 git clone https://github.com/your-username/TutorHunt_Client_11.git
-cd tutor-hunt-client
+cd TutorHunt_Client_11
 ```
 https://github.com/rownakabdullahomi/TutorHunt_Client_11.git
 ### 3️⃣ Install Dependencies  
