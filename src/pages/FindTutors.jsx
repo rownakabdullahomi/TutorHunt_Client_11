@@ -14,6 +14,8 @@ const FindTutors = () => {
   const [searchText, setSearchText] = useState(""); // For search input
   const [page, setPage] = useState(1); // Current page
   const [pageSize, setPageSize] = useState(6); // Page size
+  const [sortOrder, setSortOrder] = useState("default"); // Sorting state
+
   const axiosSecure = useAxiosSecure();
   const { category } = useParams();
 
@@ -53,10 +55,21 @@ const FindTutors = () => {
   // Determine the data source (categoryWiseData or allTutors)
   const tutorsToDisplay = category ? categoryWiseData : allTutors;
 
-  // Filter tutors based on the search text
-  const filteredTutors = tutorsToDisplay?.filter((tutor) =>
+  // Filter tutors based on the search text (language)
+  let filteredTutors = tutorsToDisplay?.filter((tutor) =>
     tutor.language.toLowerCase().includes(searchText.toLowerCase())
   );
+
+  // Sorting function
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
+  if (sortOrder === "asc") {
+    filteredTutors = [...filteredTutors].sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "desc") {
+    filteredTutors = [...filteredTutors].sort((a, b) => b.price - a.price);
+  }
 
   // Paginate the filtered tutors
   const startIndex = (page - 1) * pageSize;
@@ -139,23 +152,43 @@ const FindTutors = () => {
       </Fade>
 
       <Slide direction="left" duration={1000}>
-        {/* Page Size Dropdown */}
-        <div className="mb-6 flex items-center justify-end space-x-4">
-          <label htmlFor="pageSize" className=" font-semibold">
-            Page Size:
-          </label>
-          <select
-            id="pageSize"
-            value={pageSize}
-            onChange={handlePageSizeChange}
-            className="select select-bordered"
-          >
-            <option value={6} className="rounded-lg">6</option>
-            <option value={10}>10</option>
-            <option value={15}>15</option>
-            <option value={20}>20</option>
-            <option value={25}>25</option>
-          </select>
+        <div className="flex items-center justify-between mb-6">
+          {/* Sorting Dropdown */}
+          <div className="flex items-center space-x-4">
+            <label htmlFor="sortOrder" className="font-semibold">
+              Sort by:
+            </label>
+            <select
+              id="sortOrder"
+              value={sortOrder}
+              onChange={handleSortChange}
+              className="select select-bordered"
+            >
+              <option value="default">Default</option>
+              <option value="asc">Price: Low to High</option>
+              <option value="desc">Price: High to Low</option>
+            </select>
+          </div>
+          {/* Page Size Dropdown */}
+          <div className="flex items-center justify-end space-x-4">
+            <label htmlFor="pageSize" className=" font-semibold">
+              Page Size:
+            </label>
+            <select
+              id="pageSize"
+              value={pageSize}
+              onChange={handlePageSizeChange}
+              className="select select-bordered"
+            >
+              <option value={6} className="rounded-lg">
+                6
+              </option>
+              <option value={10}>10</option>
+              <option value={15}>15</option>
+              <option value={20}>20</option>
+              <option value={25}>25</option>
+            </select>
+          </div>
         </div>
       </Slide>
 
