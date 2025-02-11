@@ -60,22 +60,22 @@ const MyTutorials = () => {
   }
 
   return (
-    <div className="w-11/12 mx-auto my-8 p-6 bg-base-300 rounded-lg shadow-lg animate__animated animate__fadeIn animate__slower">
+    <div className="px-4 lg:px-6 py-10 p-6 bg-base-100 animate__animated animate__fadeIn animate__slower">
       <Helmet>
         <title>My Tutorials | TutorHunt</title>
       </Helmet>
 
-      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
+      <h2 className="text-3xl font-bold text-center text-primary mb-10">
         <Fade duration={3000}>My Tutorials</Fade>
       </h2>
 
       {tutorials.length === 0 ? (
         <NoData></NoData>
       ) : (
-        <div className="overflow-x-auto scrollbar-hide rounded-lg">
-          <table className="table w-full border-collapse border-2 border-gray-300">
+        <div className="overflow-x-auto scrollbar-hide rounded-lg p-1">
+          <table className="table w-full border-collapse border-2 border-base-300">
             <thead>
-              <tr className="bg-indigo-700 text-white">
+              <tr className="bg-base-300 text-primary">
                 <th className="p-4 text-left">#</th>
                 <th className="p-4 text-left">Image</th>
                 <th className="p-4 text-left">Name</th>
@@ -88,7 +88,7 @@ const MyTutorials = () => {
             </thead>
             <tbody>
               {tutorials.map((tutorial, index) => (
-                <tr key={tutorial._id} className="hover:bg-gray-100">
+                <tr key={tutorial._id} className="hover:bg-gray-200 hover:text-black">
                   <td className="p-4 align-middle">{index + 1}</td>
                   <td className="p-4 align-middle">
                     <Zoom duration={2000}>
@@ -110,13 +110,13 @@ const MyTutorials = () => {
                     <div className="flex items-center space-x-2">
                       <Link
                         to={`/update_tutorials/${tutorial._id}`}
-                        className="btn btn-outline btn-sm text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white"
+                        className="btn btn-outline btn-sm btn-primary hover:!text-white"
                       >
                         Update
                       </Link>
                       <button
                         onClick={() => handleDelete(tutorial._id)}
-                        className="btn btn-outline btn-sm text-red-600 border-red-600 hover:bg-red-600 hover:text-white"
+                        className="btn btn-outline btn-sm btn-secondary hover:!text-white"
                       >
                         Delete
                       </button>
