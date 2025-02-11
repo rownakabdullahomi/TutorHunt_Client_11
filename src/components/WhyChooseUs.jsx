@@ -62,8 +62,8 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="py-12 bg-base-200">
-      <div className="text-center mb-8">
+    <section className="pt-10 bg-base-200">
+      <div className="text-center mb-10">
         <h2 className="text-lg font-semibold text-gray-600">Achieve your goals</h2>
         <h3 className="text-3xl font-bold mt-4 animate__animated animate__heartBeat animate__infinite animate__slower">Focus on the skills you need</h3>
       </div>

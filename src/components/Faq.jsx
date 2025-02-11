@@ -20,7 +20,7 @@ const Faq = () => {
   };
 
   return (
-    <section className="py-12 bg-base-200">
+    <section className="pb-10 bg-base-200">
       <div className="max-w-7xl mx-auto px-4">
 
           <h2 className="text-3xl font-bold mb-8 animate__animated animate__flash animate__infinite animate__slower">Frequently Asked Questions</h2>

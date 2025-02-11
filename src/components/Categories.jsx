@@ -53,7 +53,7 @@ const Categories = () => {
   return (
     <div className="px-4 lg:px-6">
       <Zoom>
-        <h2 className="text-3xl font-bold text-center my-8">
+        <h2 className="text-3xl font-bold text-center my-10">
           Language Categories
         </h2>
       </Zoom>

@@ -36,9 +36,9 @@ const OurPolicies = () => {
   ];
 
   return (
-    <div className="bg-base-200 py-12">
+    <div className="bg-base-200 py-14">
       <Slide direction="right">
-        <h2 className="text-4xl font-bold text-center mb-10">
+        <h2 className="text-4xl font-bold text-center mb-14">
           Tutor<span className="text-primary">Hunt</span> Policies Are Really
           Simple
         </h2>

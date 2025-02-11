@@ -36,7 +36,7 @@ const Slider = () => {
     >
       {/* Title Section */}
       <Slide>
-      <h1 className="text-3xl font-bold text-center my-6">
+      <h1 className="text-3xl font-bold text-center my-10">
         Welcome to Tutor<span className="text-primary">Hunt</span>
       </h1>
       </Slide>
