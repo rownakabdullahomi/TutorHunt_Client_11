@@ -36,30 +36,36 @@ const Navbar = () => {
           Find Tutors
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/add_tutorials"
-          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
-        >
-          Add Tutorials
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/my_tutorials"
-          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
-        >
-          My Tutorials
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/my_booked_tutors"
-          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
-        >
-          My Booked Tutors
-        </NavLink>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <NavLink
+              to="/add_tutorials"
+              className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+            >
+              Add Tutorials
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my_tutorials"
+              className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+            >
+              My Tutorials
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my_booked_tutors"
+              className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+            >
+              My Booked Tutors
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 
