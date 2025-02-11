@@ -2,7 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-#navbar .active{
+/* #navbar .active{
     background-color: blue;
     color: white;
+} */
+
+#navbar .active {
+    background-color: white; /* Custom blue background */
+    color: blue; /* Text color */
+    border: 1px solid blue; /* Match btn-outline border */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
 }
+
+/* DaisyUI dark mode support */
+/* [data-theme="dark"] #navbar .active {
+    @apply bg-blue-600 text-white border-white;
+} */
+
+/* Dark Mode */
+[data-theme="dark"] #navbar .active {
+    background-color: #4B51B8; /* A darker variation for dark mode */
+    color: white;
+    border: 1px solid white;
+}
+
+#navbar .active:hover {
+    background-color: blue; /* Hover effect similar to btn-outline */
+    color: white; /* Text color on hover */
+}
+
+

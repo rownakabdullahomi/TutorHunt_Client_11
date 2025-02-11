@@ -213,7 +213,7 @@ const AddTutorials = () => {
           >
             <button
               type="submit"
-              className="btn btn-primary btn-outline w-full btn-neutral"
+              className="btn btn-primary btn-outline w-full hover:!text-white"
             >
               Submit Tutorial
             </button>

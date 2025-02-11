@@ -31,7 +31,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+          className="hover:border-2 hover:border-primary font-medium tracking-wide duration-200"
         >
           Home
         </NavLink>
@@ -39,7 +39,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/find_tutors"
-          className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+          className="hover:border-2 hover:border-primary font-medium tracking-wide duration-200 "
         >
           Find Tutors
         </NavLink>
@@ -49,7 +49,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/add_tutorials"
-              className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+              className="hover:border-2 hover:border-primary font-medium tracking-wide duration-200"
             >
               Add Tutorials
             </NavLink>
@@ -57,7 +57,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/my_tutorials"
-              className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+              className="hover:border-2 hover:border-primary font-medium tracking-wide duration-200"
             >
               My Tutorials
             </NavLink>
@@ -65,7 +65,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/my_booked_tutors"
-              className="hover:text-primary font-medium tracking-wide transition-all duration-200"
+              className="hover:border-2 hover:border-primary font-medium tracking-wide duration-200"
             >
               My Booked Tutors
             </NavLink>
@@ -163,7 +163,7 @@ const Navbar = () => {
 
         {/* Navbar Center */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-4">{links}</ul>
+          <ul className="menu menu-horizontal px-1 space-x-4 font-semibold">{links}</ul>
         </div>
 
         {/* Navbar End */}
