@@ -115,7 +115,7 @@ const Navbar = () => {
             <button
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden"
+              className="btn btn-outline btn-primary btn-sm lg:hidden"
               onClick={toggleDropdown}
             >
               <svg
@@ -167,10 +167,10 @@ const Navbar = () => {
         </div>
 
         {/* Navbar End */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center ">
           {/* Theme Toggle */}
           <button
-            className="btn btn-ghost text-2xl "
+            className="btn btn-ghost btn-sm text-2xl "
             onClick={toggleTheme}
             title="Toggle Theme"
           >
@@ -182,7 +182,7 @@ const Navbar = () => {
           </button>
 
           {/* Profile Section */}
-          <div className="relative">
+          <div className="relative mr-5 ml-2">
             {user && user.email ? (
               <motion.img
                 referrerPolicy="no-referrer"

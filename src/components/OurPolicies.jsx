@@ -36,14 +36,14 @@ const OurPolicies = () => {
   ];
 
   return (
-    <div className="bg-base-200 py-14">
+    <div className="bg-base-200 py-10 px-4 lg:px-6">
       <Slide direction="right">
-        <h2 className="text-4xl font-bold text-center mb-14">
+        <h2 className="text-3xl font-bold text-center mb-10">
           Tutor<span className="text-primary">Hunt</span> Policies Are Really
           Simple
         </h2>
       </Slide>
-      <div className="px-4 lg:px-6">
+      <div className="">
         <Marquee gradient={false} speed={40}>
           {policies.map((policy, index) => (
             <div

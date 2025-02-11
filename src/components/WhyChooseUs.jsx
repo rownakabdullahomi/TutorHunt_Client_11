@@ -62,13 +62,13 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="pt-10 bg-base-200">
+    <section className="pt-10 bg-base-200 px-4 lg:px-6">
       <div className="text-center mb-10">
         <h2 className="text-lg font-semibold text-gray-600">Achieve your goals</h2>
         <h3 className="text-3xl font-bold mt-4 animate__animated animate__heartBeat animate__infinite animate__slower">Focus on the skills you need</h3>
       </div>
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 lg:px-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
