@@ -55,13 +55,13 @@ const MyBookedTutors = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="px-4 lg:px-6 mb-10">
       <Helmet>
         <title>My Booked Tutors | TutorHunt</title>
       </Helmet>
 
       <Slide cascade direction="right" duration={2000}>
-        <h2 className="text-3xl font-bold mb-6 text-center">
+        <h2 className="text-3xl font-bold my-10 text-center">
           My Booked Tutors
         </h2>
       </Slide>

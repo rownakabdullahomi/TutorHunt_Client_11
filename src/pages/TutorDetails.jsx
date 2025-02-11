@@ -21,7 +21,7 @@ const TutorDetails = () => {
         const { data } = await axiosSecure.get(`/tutorial/${id}`);
         setTutor(data);
       } catch (error) {
-        toast.error("Error fetching tutor details.");
+        toast.error("Error fetching tutor details.", error);
       }
     };
 

@@ -232,7 +232,7 @@ const FindTutors = () => {
                     activeColor="#ffd800"
                     edit={false}
                   />
-                  <span className="text-sm text-gray-600 mt-1">
+                  <span className="text-sm text-gray-600">
                     ({tutor.review})
                   </span>
                 </div>

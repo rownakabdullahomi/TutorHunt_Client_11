@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import Loading from "../pages/Loading";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import NoData from "./NoData";
-import { Zoom } from "react-awesome-reveal";
 import { motion } from "framer-motion";
 
 const MyBookedTutorsCard = ({ tutorId }) => {
@@ -12,7 +11,12 @@ const MyBookedTutorsCard = ({ tutorId }) => {
   const queryClient = useQueryClient();
 
   // Fetching the tutor details using the object-based API
-  const { data: bookedTutor, isLoading, isError, error } = useQuery({
+  const {
+    data: bookedTutor,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["bookedTutor", tutorId],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/tutorial/${tutorId}`);
@@ -63,48 +67,52 @@ const MyBookedTutorsCard = ({ tutorId }) => {
   }
 
   return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      whileHover={{ scale: 1.03, boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)" }}
+      whileTap={{ scale: 0.97 }}
+      className="shadow-md bg-base-100 rounded-lg overflow-hidden flex flex-col"
+    >
+      <img
+        src={bookedTutor?.image}
+        alt={bookedTutor?.name}
+        className="w-full object-cover rounded-t-lg"
+      />
 
-      <div className="card shadow-md bg-base-100 rounded-lg p-4 border border-gray-200 flex flex-col min-h-[400px]">
-        <Zoom duration={3000}>
-          <div className="flex-grow">
-            <img
-              src={bookedTutor?.image}
-              alt={bookedTutor?.name}
-              className="w-full h-32 object-cover rounded-md mb-4"
-            />
-            <h3 className="text-xl font-semibold mb-2">{bookedTutor?.name}</h3>
-            <p>
-              <strong>Tutor Email:</strong> {bookedTutor?.email}
-            </p>
-            <p>
-              <strong>Language:</strong> {bookedTutor?.language}
-            </p>
-            <p>
-              <strong>Price:</strong> ${bookedTutor?.price}
-            </p>
-            <p>
-              <strong>Tutor Email:</strong> {bookedTutor?.tutorEmail}
-            </p>
-            <p>
-              <strong>Reviews:</strong> {bookedTutor?.review || 0}
-            </p>
-            <p className="text-gray-500 my-1">
-              {bookedTutor?.description.split(" ").slice(0, 3).join(" ")}...
-            </p>
-          </div>
-        </Zoom>
-        <div className="text-center">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+      {/* Card Content */}
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="flex-grow">
+          <h3 className="text-xl font-extrabold">{bookedTutor?.name}</h3>
+          <p className="mt-1 font-semibold">
+            <strong>Email:</strong> {bookedTutor?.email}
+          </p>
+          <p className="mt-1 font-semibold">
+            <strong>Language:</strong> {bookedTutor?.language}
+          </p>
+          <p className="font-bold mt-1 text-primary">
+            <strong>Price:</strong> ${bookedTutor?.price}
+          </p>
+
+          {/* Short description */}
+          <p className="text-gray-600 mt-2">
+            {bookedTutor?.description.split(" ").slice(0, 8).join(" ")}...
+          </p>
+        </div>
+
+        {/* Button at the bottom */}
+        <div className="mt-4 flex justify-end">
+          <button
             onClick={handleReview}
-            className="btn btn-primary btn-sm mt-1"
+            className="btn btn-primary btn-outline btn-sm w-full"
             disabled={reviewMutation.isLoading}
           >
             {reviewMutation.isLoading ? "Adding Review..." : "Add Review"}
-          </motion.button>
+          </button>
         </div>
       </div>
+    </motion.div>
   );
 };
 
