@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import ReactStars from "react-rating-stars-component";
 
 const FindTutors = () => {
   const [categoryWiseData, setCategoryWiseData] = useState(null);
@@ -122,13 +123,13 @@ const FindTutors = () => {
 
   // Render the main content
   return (
-    <div className="px-4 lg:px-6">
+    <div className="px-4 lg:px-6 bg-base-100">
       <Helmet>
         <title>Find Tutors | TutorHunt</title>
       </Helmet>
 
       <Zoom duration={2000}>
-        <h2 className="text-3xl font-bold text-center text-primary my-10">
+        <h2 className="text-3xl font-bold text-center text-primary py-10">
           {category ? `${category} Tutors` : "Find Tutors"}
         </h2>
       </Zoom>
@@ -152,7 +153,7 @@ const FindTutors = () => {
       </Fade>
 
       <Slide direction="left" duration={1000}>
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-wrap-reverse gap-3 items-center justify-between mb-6">
           {/* Sorting Dropdown */}
           <div className="flex items-center space-x-4">
             <label htmlFor="sortOrder" className="font-semibold">
@@ -170,7 +171,7 @@ const FindTutors = () => {
             </select>
           </div>
           {/* Page Size Dropdown */}
-          <div className="flex items-center justify-end space-x-4">
+          <div className="flex items-center space-x-4">
             <label htmlFor="pageSize" className=" font-semibold">
               Page Size:
             </label>
@@ -212,20 +213,38 @@ const FindTutors = () => {
               alt={tutor.name}
               className="w-full h-48 object-cover rounded-t-lg"
             />
-            <div className="p-4 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-primary">
-                  {tutor.name}
-                </h3>
-                <p className="text-sm mt-1">Email: {tutor.email}</p>
-                <p className="text-sm mt-1">Language: {tutor.language}</p>
-                <p className="text-sm mt-1">Review: {tutor.review}</p>
-                <p className="text-sm mt-1">Price: ${tutor.price}</p>
-                <p className="text-gray-600 mt-3">
-                  {tutor.description.split(" ").slice(0, 3).join(" ")}...
+
+            {/* Use flex-grow to push the button down */}
+            <div className="p-4 flex flex-col flex-grow">
+              {/* Content that expands */}
+              <div className="flex-grow">
+                <h3 className="text-xl font-extrabold">{tutor.name}</h3>
+                <p className="mt-1 font-semibold">{tutor.email}</p>
+                <p className="mt-1 font-semibold">{tutor.language}</p>
+                <p className="font-bold mt-1 text-primary">${tutor.price}</p>
+
+                {/* ⭐ React Rating Stars Component */}
+                <div className="flex items-center space-x-2 h-4 mt-1">
+                  <ReactStars
+                    count={5}
+                    value={tutor.review}
+                    size={20}
+                    activeColor="#ffd800"
+                    edit={false}
+                  />
+                  <span className="text-sm text-gray-600 mt-1">
+                    ({tutor.review})
+                  </span>
+                </div>
+
+                {/* Moved description inside flex-grow */}
+                <p className="text-gray-600 mt-2">
+                  {tutor.description.split(" ").slice(0, 8).join(" ")}...
                 </p>
               </div>
-              <div className="mt-4">
+
+              {/* Button fixed at the bottom */}
+              <div className="mt-4 flex justify-end">
                 <Link
                   to={`/tutor_details/${tutor._id}`}
                   className="btn btn-primary btn-outline btn-sm w-full"
@@ -243,7 +262,7 @@ const FindTutors = () => {
 
       <Fade duration={1500}>
         <div
-          className="my-10 flex flex-wrap justify-center items-center space-x-2"
+          className="py-10 flex flex-wrap justify-center items-center space-x-2"
           style={{ gap: "0.5rem" }}
         >
           <button

@@ -140,7 +140,7 @@ const Navbar = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <li className="font-bold italic text-xl my-2 animate__animated animate__headShake animate__infinite animate__slower mx-auto">
+                <li className="font-bold italic text-2xl my-2 animate__animated animate__headShake animate__infinite animate__slower mx-auto">
                   <Link to="/">
                     <div>
                       Tutor<span className="text-primary">Hunt</span>
