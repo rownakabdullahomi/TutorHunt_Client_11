@@ -36,19 +36,19 @@ const OurPolicies = () => {
   ];
 
   return (
-    <div className="bg-base-200 py-10 px-4 lg:px-6">
+    <div className="bg-base-200 pt-10 px-4 lg:px-6">
       <Slide direction="right">
         <h2 className="text-3xl font-bold text-center mb-10">
           Tutor<span className="text-primary">Hunt</span> Policies Are Really
           Simple
         </h2>
       </Slide>
-      <div className="">
+      <div className="pb-10">
         <Marquee gradient={false} speed={40}>
           {policies.map((policy, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center bg-base border-2 border-gray-300 shadow-md rounded-lg p-6 mx-4 w-80"
+              className="flex flex-col items-center justify-center bg-base border-2 border-gray-300 shadow-md rounded-lg p-6 mx-4 my-2 w-80"
             >
               {policy.icon}
               <h3 className="text-xl font-bold mb-2">

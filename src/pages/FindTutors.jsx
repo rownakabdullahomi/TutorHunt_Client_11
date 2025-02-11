@@ -109,13 +109,13 @@ const FindTutors = () => {
 
   // Render the main content
   return (
-    <div className="w-11/12 mx-auto p-6">
+    <div className="px-4 lg:px-6">
       <Helmet>
         <title>Find Tutors | TutorHunt</title>
       </Helmet>
 
       <Zoom duration={2000}>
-        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
+        <h2 className="text-3xl font-bold text-center text-primary my-10">
           {category ? `${category} Tutors` : "Find Tutors"}
         </h2>
       </Zoom>
@@ -150,7 +150,7 @@ const FindTutors = () => {
             onChange={handlePageSizeChange}
             className="select select-bordered"
           >
-            <option value={6}>6</option>
+            <option value={6} className="rounded-lg">6</option>
             <option value={10}>10</option>
             <option value={15}>15</option>
             <option value={20}>20</option>
@@ -160,7 +160,7 @@ const FindTutors = () => {
       </Slide>
 
       {/* React Framer Motion animation in cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {paginatedTutors?.map((tutor) => (
           <motion.div
             key={tutor._id}
@@ -172,30 +172,30 @@ const FindTutors = () => {
               boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
             }}
             whileTap={{ scale: 0.97 }}
-            className="flex flex-col lg:flex-row bg-base-300 shadow-lg rounded-lg overflow-hidden"
+            className="flex flex-col bg-base-200 shadow-lg rounded-lg overflow-hidden"
           >
             <img
               src={tutor.image}
               alt={tutor.name}
-              className="w-full lg:w-1/3 object-contain rounded-lg m-4"
+              className="w-full h-48 object-cover rounded-t-lg"
             />
             <div className="p-4 flex flex-col justify-between">
               <div>
-                <h3 className="text-xl font-semibold text-indigo-700">
+                <h3 className="text-xl font-semibold text-primary">
                   {tutor.name}
                 </h3>
                 <p className="text-sm mt-1">Email: {tutor.email}</p>
                 <p className="text-sm mt-1">Language: {tutor.language}</p>
                 <p className="text-sm mt-1">Review: {tutor.review}</p>
                 <p className="text-sm mt-1">Price: ${tutor.price}</p>
-                <p className="text-gray-500 mt-3">
+                <p className="text-gray-600 mt-3">
                   {tutor.description.split(" ").slice(0, 3).join(" ")}...
                 </p>
               </div>
               <div className="mt-4">
                 <Link
                   to={`/tutor_details/${tutor._id}`}
-                  className="btn btn-primary btn-sm w-full lg:w-auto"
+                  className="btn btn-primary btn-outline btn-sm w-full"
                 >
                   View Details
                 </Link>
@@ -210,7 +210,7 @@ const FindTutors = () => {
 
       <Fade duration={1500}>
         <div
-          className="mt-6 flex flex-wrap justify-center items-center space-x-2"
+          className="my-10 flex flex-wrap justify-center items-center space-x-2"
           style={{ gap: "0.5rem" }}
         >
           <button
@@ -225,7 +225,7 @@ const FindTutors = () => {
               key={pageNumber}
               onClick={() => handlePageChange(pageNumber)}
               className={`btn btn-sm ${
-                pageNumber === page ? "btn-secondary" : "btn-outline"
+                pageNumber === page ? "btn-secondary text-white" : "btn-outline"
               }`}
             >
               {pageNumber}

@@ -61,7 +61,7 @@ const Slider = () => {
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="w-full md:h-[400px] h-36 object-cover"
+                className="w-full md:h-[450px] h-36 object-cover"
               />
             </motion.div>
           </SwiperSlide>

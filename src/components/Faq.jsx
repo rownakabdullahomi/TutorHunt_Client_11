@@ -23,7 +23,7 @@ const Faq = () => {
     <section className="pb-10 bg-base-200">
       <div className="max-w-7xl mx-auto px-4">
 
-          <h2 className="text-3xl font-bold mb-8 animate__animated animate__flash animate__infinite animate__slower">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold mb-6 animate__animated animate__flash animate__infinite animate__slower">Frequently Asked Questions</h2>
 
         {/* Slide animation for the FAQ section */}
         <Slide bottom duration={1000} delay={200}>
