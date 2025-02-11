@@ -51,171 +51,175 @@ const AddTutorials = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-base-300 shadow-lg rounded-lg my-10">
+    <div className=" bg-base-200 py-10">
       <Helmet>
         <title>Add Tutorials | TutorHunt</title>
       </Helmet>
 
-      <Fade triggerOnce>
-        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6 lg:mb-12">
-          Add a New Tutorial
-        </h2>
-      </Fade>
-      <motion.form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        {/* User Name */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+      <div className="max-w-4xl mx-auto shadow-lg rounded-lg py-10 px-6">
+        <Fade triggerOnce>
+          <h2 className="text-3xl font-bold text-center  mb-6 lg:mb-12">
+            Add a New Tutorial
+          </h2>
+        </Fade>
+        <motion.form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <label className="block font-medium mb-2 text-indigo-700">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={user?.displayName || ""}
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
-            placeholder="Enter your name"
-            required
-            readOnly
-          />
-        </motion.div>
-
-        {/* User Email */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <label className="block font-medium mb-2 text-indigo-700">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={user?.email || ""}
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
-            placeholder="Enter your email"
-            required
-            readOnly
-          />
-        </motion.div>
-
-        {/* Image */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <label className="block font-medium mb-2 text-indigo-700">
-            Image URL
-          </label>
-          <input
-            type="url"
-            name="image"
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
-            placeholder="Enter tutorial image URL"
-            required
-          />
-        </motion.div>
-
-        {/* Language */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <label className="block font-medium mb-2 text-indigo-700">
-            Language
-          </label>
-          <select
-            name="language"
-            className="select select-bordered w-full border-indigo-300 focus:border-indigo-500"
-            required
+          {/* User Name */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <option value="">Select a language</option>
-            {categories.map((category) => (
-              <option key={category._id} value={category.value}>
-                {category.value}
-              </option>
-            ))}
-          </select>
-        </motion.div>
+            <label className="block font-medium mb-2 ">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={user?.displayName || ""}
+              className="input input-bordered w-full focus:border-indigo-500 bg-base-200 cursor-not-allowed"
+              placeholder="Enter your name"
+              required
+              readOnly
+            />
+          </motion.div>
 
-        {/* Price */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <label className="block font-medium mb-2 text-indigo-700">
-            Price
-          </label>
-          <input
-            type="number"
-            name="price"
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
-            placeholder="Enter price"
-            required
-          />
-        </motion.div>
-
-        {/* Review */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <label className="block font-medium mb-2 text-indigo-700">
-            Review
-          </label>
-          <input
-            type="number"
-            name="review"
-            className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-base-200 cursor-not-allowed"
-            placeholder="0"
-            readOnly
-          />
-        </motion.div>
-
-        {/* Description */}
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="md:col-span-2"
-        >
-          <label className="block font-medium mb-2 text-indigo-700">
-            Description
-          </label>
-          <textarea
-            name="description"
-            className="textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"
-            placeholder="Enter description"
-            required
-          ></textarea>
-        </motion.div>
-
-        {/* Submit Button */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="md:col-span-2"
-        >
-          <button
-            type="submit"
-            className="btn btn-primary btn-outline w-full btn-neutral"
+          {/* User Email */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Submit Tutorial
-          </button>
-        </motion.div>
-      </motion.form>
+            <label className="block font-medium mb-2 ">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={user?.email || ""}
+              className="input input-bordered w-full focus:border-indigo-500 bg-base-200 cursor-not-allowed"
+              placeholder="Enter your email"
+              required
+              readOnly
+            />
+          </motion.div>
+
+          {/* Image */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <label className="block font-medium mb-2 ">
+              Image URL
+            </label>
+            <input
+              type="url"
+              name="image"
+              className="input input-bordered w-full focus:border-indigo-500"
+              placeholder="Enter tutorial image URL"
+              required
+            />
+          </motion.div>
+
+          {/* Language */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <label className="block font-medium mb-2 ">
+              Language
+            </label>
+            <select
+              name="language"
+              className="select select-bordered w-full focus:border-indigo-500"
+              required
+            >
+              <option value="">Select a language</option>
+              {categories.map((category) => (
+                <option key={category._id} value={category.value}>
+                  {category.value}
+                </option>
+              ))}
+            </select>
+          </motion.div>
+
+          {/* Price */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <label className="block font-medium mb-2 ">
+              Price
+            </label>
+            <input
+              type="number"
+              name="price"
+              className="input input-bordered w-full focus:border-indigo-500"
+              placeholder="Enter price"
+              required
+            />
+          </motion.div>
+
+          {/* Review */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <label className="block font-medium mb-2 ">
+              Review
+            </label>
+            <input
+              type="number"
+              name="review"
+              className="input input-bordered w-full focus:border-indigo-500 bg-base-200 cursor-not-allowed"
+              placeholder="0"
+              readOnly
+            />
+          </motion.div>
+
+          {/* Description */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="md:col-span-2"
+          >
+            <label className="block font-medium mb-2 ">
+              Description
+            </label>
+            <textarea
+              name="description"
+              className="textarea textarea-bordered w-full focus:border-indigo-500"
+              placeholder="Enter description"
+              required
+            ></textarea>
+          </motion.div>
+
+          {/* Submit Button */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="md:col-span-2"
+          >
+            <button
+              type="submit"
+              className="btn btn-primary btn-outline w-full btn-neutral"
+            >
+              Submit Tutorial
+            </button>
+          </motion.div>
+        </motion.form>
+      </div>
     </div>
   );
 };

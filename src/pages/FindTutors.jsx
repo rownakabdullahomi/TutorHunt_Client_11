@@ -141,7 +141,7 @@ const FindTutors = () => {
             value={searchText}
             onChange={handleSearch}
             placeholder="Search by language..."
-            className="input input-bordered w-full lg:w-1/3"
+            className="input input-bordered focus:border-indigo-500 w-full lg:w-1/3"
           />
           <button
             onClick={handleReset}
@@ -163,7 +163,7 @@ const FindTutors = () => {
               id="sortOrder"
               value={sortOrder}
               onChange={handleSortChange}
-              className="select select-bordered"
+              className="select select-bordered focus:border-indigo-500"
             >
               <option value="default">Default</option>
               <option value="asc">Price: Low to High</option>
@@ -179,7 +179,7 @@ const FindTutors = () => {
               id="pageSize"
               value={pageSize}
               onChange={handlePageSizeChange}
-              className="select select-bordered"
+              className="select select-bordered focus:border-indigo-500"
             >
               <option value={6} className="rounded-lg">
                 6
@@ -223,7 +223,7 @@ const FindTutors = () => {
                 <p className="mt-1 font-semibold">{tutor.language}</p>
                 <p className="font-bold mt-1 text-primary">${tutor.price}</p>
 
-                {/* ⭐ React Rating Stars Component */}
+                {/* Rating Stars Component */}
                 <div className="flex items-center space-x-2 h-4 mt-1">
                   <ReactStars
                     count={5}
