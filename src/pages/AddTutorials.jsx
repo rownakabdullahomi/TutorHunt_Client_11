@@ -51,14 +51,14 @@ const AddTutorials = () => {
   };
 
   return (
-    <div className=" bg-base-200 py-10">
+    <div className="max-w-4xl mx-auto p-6 bg-base-200 shadow-lg rounded-lg my-10">
       <Helmet>
         <title>Add Tutorials | TutorHunt</title>
       </Helmet>
 
-      <div className="max-w-4xl mx-auto shadow-lg rounded-lg py-10 px-6">
+
         <Fade triggerOnce>
-          <h2 className="text-3xl font-bold text-center  mb-6 lg:mb-12">
+          <h2 className="text-3xl font-bold text-center  mb-6 lg:mb-10">
             Add a New Tutorial
           </h2>
         </Fade>
@@ -219,7 +219,7 @@ const AddTutorials = () => {
             </button>
           </motion.div>
         </motion.form>
-      </div>
+      
     </div>
   );
 };

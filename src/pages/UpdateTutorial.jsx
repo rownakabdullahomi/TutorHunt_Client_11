@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Fade, Slide } from "react-awesome-reveal";
 import { Helmet } from "react-helmet-async";
+import Loading from "./Loading";
 
 const UpdateTutorial = () => {
   const { id } = useParams();
@@ -53,17 +54,17 @@ const UpdateTutorial = () => {
   };
 
   if (!tutorial) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-base-300 shadow-lg rounded-lg my-10">
+    <div className="max-w-4xl mx-auto p-6 bg-base-200 shadow-lg rounded-lg my-10">
       <Helmet>
         <title>Update Tutorial | TutorHunt</title>
       </Helmet>
 
       <Fade duration={3000}>
-        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
+        <h2 className="text-3xl font-bold text-center mb-10">
           Update Tutorial
         </h2>
       </Fade>
@@ -71,55 +72,55 @@ const UpdateTutorial = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
           <Slide direction="left" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">
+              <label className="block font-medium mb-2">
                 Name
               </label>
               <input
                 type="text"
                 name="name"
                 defaultValue={tutorial.name}
-                className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
+                className="input input-bordered w-full focus:border-indigo-500"
                 readOnly
               />
             </div>
           </Slide>
           <Slide direction="right" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">
+              <label className="block font-medium mb-2">
                 Email
               </label>
               <input
                 type="email"
                 name="email"
                 defaultValue={tutorial.email}
-                className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
+                className="input input-bordered w-full focus:border-indigo-500"
                 readOnly
               />
             </div>
           </Slide>
           <Slide direction="left" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">
+              <label className="block font-medium mb-2">
                 Image URL
               </label>
               <input
                 type="text"
                 name="image"
                 defaultValue={tutorial.image}
-                className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
+                className="input input-bordered w-full focus:border-indigo-500"
                 required
               />
             </div>
           </Slide>
           <Slide direction="right" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">
+              <label className="block font-medium mb-2">
                 Language
               </label>
               <select
                 name="language"
                 defaultValue={tutorial.language}
-                className="select select-bordered w-full border-indigo-300 focus:border-indigo-500"
+                className="select select-bordered w-full focus:border-indigo-500"
                 required
               >
                 {categories.map((category) => (
@@ -132,50 +133,50 @@ const UpdateTutorial = () => {
           </Slide>
           <Slide direction="left" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">
+              <label className="block font-medium mb-2">
                 Price
               </label>
               <input
                 type="number"
                 name="price"
                 defaultValue={tutorial.price}
-                className="input input-bordered w-full border-indigo-300 focus:border-indigo-500"
+                className="input input-bordered w-full focus:border-indigo-500"
                 required
               />
             </div>
           </Slide>
           <Slide direction="right" triggerOnce>
             <div>
-              <label className="block font-medium mb-2 text-indigo-700">
+              <label className="block font-medium mb-2">
                 Review
               </label>
               <input
                 type="number"
                 name="review"
                 defaultValue={tutorial.review}
-                className="input input-bordered w-full border-indigo-300 focus:border-indigo-500 bg-gray-100"
+                className="input input-bordered w-full focus:border-indigo-500 bg-base-300"
                 readOnly
               />
             </div>
           </Slide>
           {/* Description */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-2 text-indigo-700">
+            <label className="block font-medium mb-2">
               Description
             </label>
             <textarea
               name="description"
               defaultValue={tutorial.description}
-              className="mb-2 textarea textarea-bordered w-full border-indigo-300 focus:border-indigo-500"
+              className="mb-2 textarea textarea-bordered w-full focus:border-indigo-500"
               required
             ></textarea>
           </div>
         </div>
         <Fade triggerOnce>
-          <div className="flex-grow flex items-end">
+          <div className="flex-grow flex items-end mt-5">
             <button
               type="submit"
-              className="btn btn-primary btn-outline w-full btn-neutral"
+              className="btn btn-primary btn-outline w-full hover:!text-white"
             >
               Update Tutorial
             </button>
