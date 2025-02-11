@@ -43,7 +43,7 @@ const OurPolicies = () => {
           Simple
         </h2>
       </Slide>
-      <div className="max-w-7xl mx-auto">
+      <div className="px-4 lg:px-6">
         <Marquee gradient={false} speed={40}>
           {policies.map((policy, index) => (
             <div

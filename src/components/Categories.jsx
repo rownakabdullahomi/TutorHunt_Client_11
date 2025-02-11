@@ -51,7 +51,7 @@ const Categories = () => {
   if (error) return toast.error("Failed to load categories.");
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="px-4 lg:px-6">
       <Zoom>
         <h2 className="text-3xl font-bold text-center my-8">
           Language Categories

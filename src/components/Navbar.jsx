@@ -11,12 +11,20 @@ const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const [theme, setTheme] = useState("light"); // Default theme
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
   const location = useLocation();
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
+
+  // Toggle Theme
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
   const links = (
     <>
@@ -64,7 +72,7 @@ const Navbar = () => {
           </li>
         </>
       ) : (
-        ""
+        <></>
       )}
     </>
   );
@@ -77,11 +85,6 @@ const Navbar = () => {
   // Toggle Profile Dropdown
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!profileDropdownOpen);
-  };
-
-  // Toggle Theme
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   const handleLogout = () => {
@@ -100,7 +103,7 @@ const Navbar = () => {
       className="bg-base-100 shadow-md transition-all duration-300"
     >
       <motion.div
-        className="navbar w-11/12 mx-auto justify-between py-2"
+        className="navbar px-4 lg:px-6 justify-between py-2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

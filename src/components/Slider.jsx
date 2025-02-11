@@ -29,7 +29,7 @@ const Slider = () => {
 
   return (
     <motion.div
-      className="my-10 w-11/12 mx-auto"
+      className="my-10 px-4 lg:px-6"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
