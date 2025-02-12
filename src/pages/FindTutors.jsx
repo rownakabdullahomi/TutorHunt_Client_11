@@ -247,7 +247,7 @@ const FindTutors = () => {
               <div className="mt-4 flex justify-end">
                 <Link
                   to={`/tutor_details/${tutor._id}`}
-                  className="btn btn-primary btn-outline btn-sm w-full"
+                  className="btn btn-primary btn-outline btn-sm w-full hover:!text-white"
                 >
                   View Details
                 </Link>

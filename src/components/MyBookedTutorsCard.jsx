@@ -105,7 +105,7 @@ const MyBookedTutorsCard = ({ tutorId }) => {
         <div className="mt-4 flex justify-end">
           <button
             onClick={handleReview}
-            className="btn btn-primary btn-outline btn-sm w-full"
+            className="btn btn-primary btn-outline btn-sm w-full hover:!text-white"
             disabled={reviewMutation.isLoading}
           >
             {reviewMutation.isLoading ? "Adding Review..." : "Add Review"}

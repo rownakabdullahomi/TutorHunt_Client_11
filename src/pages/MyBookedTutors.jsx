@@ -61,7 +61,7 @@ const MyBookedTutors = () => {
       </Helmet>
 
       <Slide cascade direction="right" duration={2000}>
-        <h2 className="text-3xl font-bold my-10 text-center">
+        <h2 className="text-3xl font-bold my-10 text-center text-primary">
           My Booked Tutors
         </h2>
       </Slide>
