@@ -18,13 +18,13 @@ const AboutUs = () => {
           <h2 className="text-3xl font-bold text-center md:text-left">
             About Tutor<span className="text-primary">Hunt</span>
           </h2>
-          <p className="text-gray-600 mt-4 text-justify">
+          <p className=" mt-4 text-justify">
             Welcome to TutorHunt, your go-to platform for learning new languages
             from experienced tutors worldwide. We believe in the power of
             communication and strive to make language learning accessible,
             interactive, and engaging for everyone.
           </p>
-          <p className="text-gray-600 mt-4 text-justify">
+          <p className=" mt-4 text-justify">
             Whether you&apos;re a beginner or looking to refine your fluency, our
             platform connects you with skilled tutors who tailor lessons to
             your needs. Join our growing community and start your journey to
