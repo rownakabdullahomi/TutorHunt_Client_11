@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="bg-base-200 flex items-center justify-center md:h-screen p-6">
-      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-around gap-10 bg-base-100 rounded-xl border-2 border-gray-700 shadow-lg p-8 overflow-hidden">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-around gap-10 bg-base-100 rounded-xl shadow-lg p-8 overflow-hidden">
         {/* Left Side - GIF */}
         <div className="flex flex-col justify-center items-center">
           <img src={LoginGif} alt="Login" className="lg:max-h-[400px] w-auto object-contain" />

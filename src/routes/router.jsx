@@ -11,6 +11,7 @@ import UpdateTutorial from "../pages/UpdateTutorial";
 import FindTutors from "../pages/FindTutors";
 import TutorDetails from "../pages/TutorDetails";
 import Error404 from "../pages/Error404";
+import AboutUs from "../pages/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             <MyBookedTutors></MyBookedTutors>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/about",
+        element: <AboutUs/>,
       },
     ],
   },

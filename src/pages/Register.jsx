@@ -74,7 +74,7 @@ const Register = () => {
 
   return (
     <div className="bg-base-200 flex items-center justify-center md:h-screen p-6">
-      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-around gap-10 bg-base-100 rounded-xl border-2 border-gray-700 shadow-lg p-6 overflow-hidden">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-around gap-10 bg-base-100 rounded-xl shadow-lg p-6 overflow-hidden">
         {/* Left Side - GIF */}
         <div className="flex flex-col justify-center items-center">
           <img
@@ -165,7 +165,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-5">
+            <div className="flex flex-col md:flex-row">
               {/* Register Button */}
               <button
                 type="submit"
@@ -175,7 +175,7 @@ const Register = () => {
               </button>
 
               {/* Divider */}
-              <div className="divider divider-horizontal m-0 p-0 text-sm text-gray-400">OR</div>
+              <div className="divider text-sm text-gray-400">OR</div>
 
               {/* Social Register */}
               <div

@@ -75,6 +75,14 @@ const Navbar = () => {
       ) : (
         <></>
       )}
+      <li>
+        <NavLink
+          to="/about"
+          className="hover:border-2 hover:border-primary font-medium tracking-wide duration-200 "
+        >
+          About Us
+        </NavLink>
+      </li>
     </>
   );
 
