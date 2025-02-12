@@ -75,36 +75,39 @@ const MyTutorials = () => {
         <div className="overflow-x-auto scrollbar-hide rounded-lg">
           <table className="table w-full border-collapse border-2 border-base-300">
             <thead>
-              <tr className="bg-base-300 text-primary text-lg">
-                <th className="p-4 text-center">#</th>
-                <th className="p-4 text-center">Image</th>
-                <th className="p-4 text-center">Name</th>
-                <th className="p-4 text-center">Language</th>
-                <th className="p-4 text-center">Review</th>
-                <th className="p-4 text-center">Price</th>
-                <th className="p-4 text-center">Description</th>
-                <th className="p-4 text-center">Actions</th>
+              <tr className="bg-base-300 text-primary md:text-lg">
+                <th className="lg:p-4 text-center">#</th>
+                <th className="lg:p-4 text-center">Image</th>
+                <th className="lg:p-4 text-center">Name</th>
+                <th className="lg:p-4 text-center">Language</th>
+                <th className="lg:p-4 text-center">Review</th>
+                <th className="lg:p-4 text-center">Price</th>
+                <th className="lg:p-4 text-center">Description</th>
+                <th className="lg:p-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {tutorials.map((tutorial, index) => (
-                <tr key={tutorial._id} className="hover:bg-gray-200 hover:text-black text-lg text-center">
-                  <td className="p-4 align-middle">{index + 1}</td>
-                  <td className="p-4 align-middle">
+                <tr
+                  key={tutorial._id}
+                  className="hover:bg-gray-200 hover:text-black md:text-lg text-center"
+                >
+                  <td className="lg:p-4 align-middle">{index + 1}</td>
+                  <td className="lg:p-4 align-middle">
                     <Zoom duration={2000}>
                       <img
                         src={tutorial?.image}
                         alt={tutorial?.name}
-                        className="w-20 h-20 object-cover rounded-lg"
+                        className="h-16 md:min-w-20 md:h-20 min-w-16 object-cover rounded-lg mx-auto"
                       />
                     </Zoom>
                   </td>
-                  <td className="p-4 align-middle">{tutorial?.name}</td>
-                  <td className="p-4 align-middle">{tutorial?.language}</td>
-                  <td className="p-4 align-middle">${tutorial?.price}</td>
-                  <td className="p-4 align-middle">{tutorial?.review}</td>
-                  <td className="p-4 align-middle text-start">
-                    {tutorial?.description.split(" ").slice(0, 20).join(" ")}...
+                  <td className="lg:p-4 align-middle">{tutorial?.name}</td>
+                  <td className="lg:p-4 align-middle">{tutorial?.language}</td>
+                  <td className="lg:p-4 align-middle">${tutorial?.price}</td>
+                  <td className="lg:p-4 align-middle">{tutorial?.review}</td>
+                  <td className="lg:p-4 align-middle text-start">
+                    {tutorial?.description.split(" ").slice(0, 5).join(" ")}...
                   </td>
                   <td className="p-4 align-middle">
                     <div className="flex items-center space-x-2">
