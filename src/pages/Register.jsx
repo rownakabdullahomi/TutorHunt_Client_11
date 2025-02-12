@@ -85,7 +85,7 @@ const Register = () => {
           {/* Back to Home Button */}
           <button
             onClick={() => navigate("/")}
-            className="btn btn-outline btn-primary mt-5 w-full transform hover:scale-105 transition duration-300"
+            className="btn btn-outline btn-primary mt-5 w-full hover:!text-white transform hover:scale-105 transition duration-300"
           >
             <FaHome size={18} /> Back to Home
           </button>
@@ -169,7 +169,7 @@ const Register = () => {
               {/* Register Button */}
               <button
                 type="submit"
-                className="btn btn-secondary btn-outline w-full md:w-fit flex-1"
+                className="btn btn-secondary btn-outline w-full md:w-fit flex-1 hover:!text-white transform hover:scale-105 transition duration-300"
               >
                 <FaUserPlus size={18} /> Register
               </button>
@@ -180,7 +180,7 @@ const Register = () => {
               {/* Social Register */}
               <div
                 onClick={handleGoogleLogin}
-                className="btn btn-outline flex items-center justify-center w-full md:w-fit"
+                className="btn btn-outline flex items-center justify-center w-full md:w-fit transform hover:scale-105 transition duration-300"
               >
                 <FcGoogle size={24} />
                 Register With Google

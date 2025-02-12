@@ -238,18 +238,18 @@ const Navbar = () => {
           {user && user?.email ? (
             <Link
               onClick={handleLogout}
-              className="btn btn-sm btn-outline btn-primary flex items-center gap-2"
+              className="btn btn-sm btn-outline btn-primary flex items-center gap-2 hover:!text-white transform hover:scale-105 transition duration-300"
             >
-              <FiLogOut className="text-red-600" /> Logout
+              <FiLogOut className="text-red-600" size={18}/> Logout
             </Link>
           ) : (
             location.pathname !== "/register" &&
             location.pathname !== "/login" && (
               <Link
                 to="/login"
-                className="btn btn-sm btn-outline btn-primary md:px-6 flex items-center gap-2"
+                className="btn btn-sm btn-outline btn-primary md:px-6 flex items-center gap-2 hover:!text-white transform hover:scale-105 transition duration-300"
               >
-                <FiLogIn className="text-green-600" /> Login
+                <FiLogIn className="text-green-600 " size={18}/> Login
               </Link>
             )
           )}

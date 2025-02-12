@@ -63,7 +63,7 @@ const Login = () => {
           {/* Back to Home Button */}
           <button
             onClick={() => navigate("/")}
-            className="btn btn-outline btn-primary mt-5 w-full transform hover:scale-105 transition duration-300"
+            className="btn btn-outline btn-primary mt-5 w-full transform hover:scale-105 transition duration-300 hover:!text-white"
           >
             <FaHome size={18} /> Back to Home
           </button>
@@ -114,7 +114,7 @@ const Login = () => {
             </div>
 
             {/* Login Button */}
-            <button type="submit" className="btn btn-secondary btn-outline w-full flex items-center justify-center gap-2">
+            <button type="submit" className="btn btn-secondary btn-outline w-full flex items-center justify-center gap-2 hover:!text-white transform hover:scale-105 transition duration-300">
               <FaSignInAlt size={18} /> Login
             </button>
           </form>
@@ -125,7 +125,7 @@ const Login = () => {
           {/* Social Login */}
           <button
             onClick={handleGoogleLogin}
-            className="btn btn-outline w-full flex items-center justify-center"
+            className="btn btn-outline w-full flex items-center justify-center transform hover:scale-105 transition duration-300"
           >
             <FcGoogle size={24} />
             Login With Google
