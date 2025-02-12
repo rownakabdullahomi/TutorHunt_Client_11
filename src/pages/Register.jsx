@@ -77,7 +77,11 @@ const Register = () => {
       <div className="w-full max-w-7xl flex flex-col md:flex-row justify-around gap-10 bg-base-100 rounded-xl border-2 border-gray-700 shadow-lg p-6 overflow-hidden">
         {/* Left Side - GIF */}
         <div className="flex flex-col justify-center items-center">
-          <img src={RegisterGif} alt="Register" className="lg:max-h-[450px] w-auto object-contain" />
+          <img
+            src={RegisterGif}
+            alt="Register"
+            className="lg:max-h-[400px] w-auto object-contain"
+          />
           {/* Back to Home Button */}
           <button
             onClick={() => navigate("/")}
@@ -89,7 +93,9 @@ const Register = () => {
 
         {/* Right Side - Form */}
         <div className="w-full max-w-md flex flex-col justify-center">
-          <h2 className="text-3xl font-bold text-center">Create Your Account</h2>
+          <h2 className="text-3xl font-bold text-center">
+            Create Your Account
+          </h2>
           <p className="text-sm text-center text-gray-500 mb-4">
             Join us to enjoy all the features!
           </p>
@@ -134,7 +140,9 @@ const Register = () => {
 
             {/* Password Input */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -148,28 +156,40 @@ const Register = () => {
                   className="absolute inset-y-0 right-3 flex items-center text-gray-500"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                  {showPassword ? (
+                    <FaEyeSlash size={20} />
+                  ) : (
+                    <FaEye size={20} />
+                  )}
                 </button>
               </div>
             </div>
 
-            {/* Register Button */}
-            <button type="submit" className="btn btn-secondary btn-outline w-full">
-            <FaUserPlus size={18} /> Register
-            </button>
+            <div className="flex flex-col md:flex-row gap-5">
+              {/* Register Button */}
+              <button
+                type="submit"
+                className="btn btn-secondary btn-outline w-full md:w-fit flex-1"
+              >
+                <FaUserPlus size={18} /> Register
+              </button>
+
+              {/* Divider */}
+              <div className="divider divider-horizontal m-0 p-0 text-sm text-gray-400">OR</div>
+
+              {/* Social Register */}
+              <div
+                onClick={handleGoogleLogin}
+                className="btn btn-outline flex items-center justify-center w-full md:w-fit"
+              >
+                <FcGoogle size={24} />
+                Register With Google
+              </div>
+            </div>
           </form>
 
           {/* Divider */}
-          <div className="divider text-sm text-gray-400">OR</div>
-
-          {/* Social Register */}
-          <button
-            onClick={handleGoogleLogin}
-            className="btn btn-outline w-full flex items-center justify-center"
-          >
-            <FcGoogle size={24} />
-            Register With Google
-          </button>
+          {/* <div className="divider text-sm text-gray-400">OR</div> */}
 
           {/* Login Link */}
           <p className="text-center text-sm text-gray-600 mt-4">

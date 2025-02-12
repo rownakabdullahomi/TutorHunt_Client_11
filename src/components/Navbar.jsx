@@ -11,14 +11,15 @@ const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "light";
-  });
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
   const location = useLocation();
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.documentElement.setAttribute("data-theme", localTheme);
   }, [theme]);
 
   // Toggle Theme
@@ -163,7 +164,9 @@ const Navbar = () => {
 
         {/* Navbar Center */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-4 font-semibold">{links}</ul>
+          <ul className="menu menu-horizontal px-1 space-x-4 font-semibold">
+            {links}
+          </ul>
         </div>
 
         {/* Navbar End */}
