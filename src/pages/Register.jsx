@@ -3,12 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaHome, FaUserPlus } from "react-icons/fa";
 import axios from "axios";
+import RegisterGif from "../assets/Sign up.gif";
 
 const Register = () => {
   const navigate = useNavigate();
-
   const { userRegister, setUser, googleLogin, updateUserProfile } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -22,12 +22,10 @@ const Register = () => {
     const password = formData.get("password");
 
     const validatePassword = (password) => {
-      // Check if password meets the criteria
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
       return regex.test(password);
     };
 
-    // Validate password
     if (!validatePassword(password)) {
       toast.error(
         "Password must have at least one uppercase letter, one lowercase letter, and at least 6 characters."
@@ -37,17 +35,14 @@ const Register = () => {
 
     userRegister(email, password)
       .then((res) => {
-        // console.log(res.user);
         const user = res.user;
         setUser(user);
         updateUserProfile({ displayName: name, photoURL: photo });
         toast.success("Registration Successful!");
         navigate("/");
 
-        // Save new user to DB
         const createdAt = res.user.metadata.creationTime;
         const newUser = { name, email, photo, createdAt };
-        // Make a POST request
         axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
       })
       .catch((error) => {
@@ -63,7 +58,6 @@ const Register = () => {
         toast.success("Google login successful!");
         navigate("/");
 
-        // Save Google user to DB
         const createdAt = user?.metadata.creationTime;
         const newUser = {
           name: user?.displayName,
@@ -71,33 +65,40 @@ const Register = () => {
           photo: user?.photoURL,
           createdAt,
         };
-        // Make a POST request to store the user
         axios.post(`${import.meta.env.VITE_API_URL}/users`, newUser);
       })
       .catch((error) => {
-        // console.log(error.message);
         toast.error("Google login failed! " + error.message);
       });
   };
 
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
   return (
-    <div className=" bg-base-300 flex items-center justify-center p-8">
-      <div className="w-full max-w-md bg-base-200 rounded-xl border-2 border-gray-700 shadow-md p-6 space-y-6">
-        <h2 className="text-3xl font-bold text-center ">Create Your Account</h2>
-        <p className="text-sm text-center text-gray-500">
-          Join us to enjoy all the features!
-        </p>
+    <div className="bg-base-200 flex items-center justify-center md:h-screen p-6">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-around gap-10 bg-base-100 rounded-xl border-2 border-gray-700 shadow-lg p-6 overflow-hidden">
+        {/* Left Side - GIF */}
+        <div className="flex flex-col justify-center items-center">
+          <img src={RegisterGif} alt="Register" className="lg:max-h-[450px] w-auto object-contain" />
+          {/* Back to Home Button */}
+          <button
+            onClick={() => navigate("/")}
+            className="btn btn-outline btn-primary mt-5 w-full transform hover:scale-105 transition duration-300"
+          >
+            <FaHome size={18} /> Back to Home
+          </button>
+        </div>
 
-        {/* Registration Form */}
-        <form onSubmit={handleRegister}>
-          <div className="space-y-4">
+        {/* Right Side - Form */}
+        <div className="w-full max-w-md flex flex-col justify-center">
+          <h2 className="text-3xl font-bold text-center">Create Your Account</h2>
+          <p className="text-sm text-center text-gray-500 mb-4">
+            Join us to enjoy all the features!
+          </p>
+
+          {/* Registration Form */}
+          <form onSubmit={handleRegister} className="space-y-4">
             {/* Name Input */}
             <div>
-              <label className="block text-sm font-medium ">Full Name</label>
+              <label className="block text-sm font-medium">Full Name</label>
               <input
                 type="text"
                 name="name"
@@ -109,7 +110,7 @@ const Register = () => {
 
             {/* Photo URL Input */}
             <div>
-              <label className="block text-sm font-medium ">Photo URL</label>
+              <label className="block text-sm font-medium">Photo URL</label>
               <input
                 type="text"
                 name="photo"
@@ -118,11 +119,10 @@ const Register = () => {
                 required
               />
             </div>
+
             {/* Email Input */}
             <div>
-              <label className="block text-sm font-medium ">
-                Email Address
-              </label>
+              <label className="block text-sm font-medium">Email Address</label>
               <input
                 type="email"
                 name="email"
@@ -134,9 +134,7 @@ const Register = () => {
 
             {/* Password Input */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -148,32 +146,23 @@ const Register = () => {
                 <button
                   type="button"
                   className="absolute inset-y-0 right-3 flex items-center text-gray-500"
-                  onClick={handleShowPassword}
+                  onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? (
-                    <FaEyeSlash size={20} />
-                  ) : (
-                    <FaEye size={20} />
-                  )}
+                  {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
                 </button>
               </div>
             </div>
-          </div>
 
-          {/* Register Button */}
-          <button
-            type="submit"
-            className="btn btn-secondary btn-outline w-full mt-6"
-          >
-            Register
-          </button>
-        </form>
+            {/* Register Button */}
+            <button type="submit" className="btn btn-secondary btn-outline w-full">
+            <FaUserPlus size={18} /> Register
+            </button>
+          </form>
 
-        {/* Divider */}
-        <div className="divider text-sm text-gray-400">OR</div>
+          {/* Divider */}
+          <div className="divider text-sm text-gray-400">OR</div>
 
-        {/* Social Register */}
-        <div className="space-y-3">
+          {/* Social Register */}
           <button
             onClick={handleGoogleLogin}
             className="btn btn-outline w-full flex items-center justify-center"
@@ -181,15 +170,15 @@ const Register = () => {
             <FcGoogle size={24} />
             Register With Google
           </button>
-        </div>
 
-        {/* Login Link */}
-        <p className="text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <Link to="/login" className="text-primary font-medium">
-            Login here
-          </Link>
-        </p>
+          {/* Login Link */}
+          <p className="text-center text-sm text-gray-600 mt-4">
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary font-medium">
+              Login here
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
